@@ -1,142 +1,164 @@
 *{
+
 margin:0;
+
 padding:0;
+
 box-sizing:border-box;
+
 }
 
 html{
+
 scroll-behavior:smooth;
+
 }
 
 body{
 
-font-family:'Poppins',sans-serif;
-
-background:
-radial-gradient(circle at top,#1b1b1b,#050505 70%);
+background:#000;
 
 color:white;
+
+font-family:Poppins,sans-serif;
 
 overflow-x:hidden;
 
 }
 
-.background{
+/* HERO */
 
-position:fixed;
-inset:0;
+.hero{
 
-background:
-radial-gradient(circle at 20% 20%,rgba(0,255,170,.15),transparent 35%),
-radial-gradient(circle at 80% 0%,rgba(0,150,255,.15),transparent 35%);
+height:100vh;
 
-z-index:-1;
+display:flex;
 
-animation:move 12s infinite alternate;
+justify-content:center;
 
-}
+align-items:center;
 
-@keyframes move{
-
-from{
-transform:scale(1);
-}
-
-to{
-transform:scale(1.15);
-}
-
-}
-
-header{
-
-padding:90px 20px 60px;
+position:relative;
 
 text-align:center;
 
-}
+overflow:hidden;
 
-h1{
-
-font-size:72px;
-
-font-weight:800;
-
-letter-spacing:-2px;
+padding:20px;
 
 }
 
-.subtitle{
+.logo-bg{
 
-margin-top:15px;
+position:absolute;
+
+width:85vw;
+
+max-width:950px;
+
+opacity:.06;
+
+user-select:none;
+
+pointer-events:none;
+
+}
+
+.hero-content{
+
+position:relative;
+
+z-index:2;
+
+max-width:850px;
+
+}
+
+.hero h1{
+
+font-size:88px;
+
+font-weight:900;
+
+letter-spacing:-3px;
+
+margin-bottom:20px;
+
+}
+
+.hero p{
 
 font-size:24px;
 
-color:#bdbdbd;
+font-weight:300;
+
+color:#bfbfbf;
+
+margin-bottom:40px;
 
 line-height:1.5;
 
 }
 
-.mainButton{
+/* SMALL LINKS */
 
-display:inline-block;
+.mini-links{
 
-margin-top:45px;
+display:flex;
 
-padding:18px 38px;
+justify-content:center;
 
-background:linear-gradient(135deg,#00d084,#00a8ff);
+gap:28px;
 
-border-radius:60px;
+flex-wrap:wrap;
 
-color:white;
+}
+
+.mini-links a{
+
+font-size:14px;
+
+color:#7c7c7c;
 
 text-decoration:none;
 
-font-weight:700;
-
-font-size:20px;
-
 transition:.3s;
 
-box-shadow:0 10px 35px rgba(0,180,255,.35);
+}
+
+.mini-links a:hover{
+
+color:white;
 
 }
 
-.mainButton:hover{
-
-transform:translateY(-4px) scale(1.04);
-
-}
+/* PARTNERS */
 
 .partners{
 
-max-width:1100px;
-
-margin:auto;
-
-padding:40px 20px 80px;
+padding:120px 8%;
 
 }
 
 .partners h2{
 
-font-size:44px;
-
 text-align:center;
 
-margin-bottom:12px;
+font-size:52px;
+
+margin-bottom:60px;
+
+font-weight:800;
 
 }
 
-.partners p{
+.grid{
 
-text-align:center;
+display:grid;
 
-color:#bdbdbd;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 
-margin-bottom:40px;
+gap:30px;
 
 }
 
@@ -144,21 +166,15 @@ margin-bottom:40px;
 
 display:block;
 
+padding:40px;
+
+background:#0d0d0d;
+
+border:1px solid #222;
+
+border-radius:22px;
+
 text-decoration:none;
-
-color:white;
-
-padding:35px;
-
-margin:20px 0;
-
-border-radius:28px;
-
-background:rgba(255,255,255,.05);
-
-backdrop-filter:blur(20px);
-
-border:1px solid rgba(255,255,255,.08);
 
 transition:.35s;
 
@@ -166,146 +182,72 @@ transition:.35s;
 
 .card:hover{
 
-transform:translateY(-8px);
+transform:translateY(-10px);
 
-background:rgba(255,255,255,.09);
-
-}
-
-.card i{
-
-font-size:44px;
-
-margin-bottom:20px;
-
-color:#00d084;
+border-color:white;
 
 }
 
 .card h3{
 
-font-size:30px;
+color:white;
 
-margin-bottom:10px;
-
-}
-
-.card span{
-
-color:#c8c8c8;
-
-}
-
-.featured{
-
-border:2px solid #00d084;
-
-}
-
-.coming{
-
-margin-top:40px;
-
-padding:45px;
-
-border-radius:30px;
-
-text-align:center;
-
-background:linear-gradient(135deg,#111,#222);
-
-border:2px dashed rgba(255,255,255,.25);
-
-}
-
-.coming h3{
-
-font-size:36px;
+font-size:28px;
 
 margin-bottom:15px;
 
 }
 
-.coming p{
+.card p{
 
-margin-bottom:30px;
+color:#999;
 
-}
-
-.coming a{
-
-display:inline-block;
-
-padding:16px 34px;
-
-border-radius:50px;
-
-background:white;
-
-color:black;
-
-font-weight:700;
-
-text-decoration:none;
-
-transition:.3s;
+line-height:1.6;
 
 }
 
-.coming a:hover{
-
-transform:scale(1.05);
-
-}
+/* FOOTER */
 
 footer{
 
-padding:70px 20px;
+padding:50px;
 
 text-align:center;
 
-color:#888;
+color:#555;
 
-font-size:15px;
+font-size:14px;
 
 }
+
+/* MOBILE */
 
 @media(max-width:768px){
 
-h1{
+.hero h1{
 
-font-size:48px;
+font-size:56px;
+
+letter-spacing:-1px;
 
 }
 
-.subtitle{
+.hero p{
 
 font-size:18px;
 
 }
 
+.logo-bg{
+
+width:115vw;
+
+}
+
 .partners h2{
 
-font-size:34px;
+font-size:38px;
 
 }
 
-.card{
-
-padding:25px;
-
-}
-.logo{
-    width:140px;
-    height:140px;
-    margin-bottom:30px;
-    border-radius:50%;
-    box-shadow:0 0 40px rgba(255,255,255,.15);
-    transition:.4s;
-}
-
-.logo:hover{
-    transform:rotate(8deg) scale(1.08);
-    box-shadow:0 0 70px rgba(255,255,255,.35);
-}
 }
