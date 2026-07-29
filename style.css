@@ -1,253 +1,81 @@
 *{
-
-margin:0;
-
-padding:0;
-
-box-sizing:border-box;
-
-}
-
-html{
-
-scroll-behavior:smooth;
-
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-
-background:#000;
-
-color:white;
-
-font-family:Poppins,sans-serif;
-
-overflow-x:hidden;
-
+    background:#000;
+    color:white;
+    font-family:Arial, Helvetica, sans-serif;
 }
-
-/* HERO */
 
 .hero{
+    position:relative;
+    width:100%;
+    height:100vh;
 
-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
 
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-position:relative;
-
-text-align:center;
-
-overflow:hidden;
-
-padding:20px;
-
+    overflow:hidden;
 }
 
 .logo-bg{
+    position:absolute;
 
-position:absolute;
+    width:70vw;
+    max-width:650px;
 
-width:85vw;
+    opacity:0.08;
 
-max-width:950px;
-
-opacity:.06;
-
-user-select:none;
-
-pointer-events:none;
-
+    z-index:1;
 }
 
-.hero-content{
+h1{
+    position:relative;
+    z-index:2;
 
-position:relative;
-
-z-index:2;
-
-max-width:850px;
-
+    font-size:72px;
+    font-weight:800;
 }
 
-.hero h1{
+p{
+    position:relative;
+    z-index:2;
 
-font-size:88px;
+    margin-top:20px;
 
-font-weight:900;
+    font-size:28px;
 
-letter-spacing:-3px;
-
-margin-bottom:20px;
-
+    color:#bdbdbd;
 }
 
-.hero p{
+.links{
+    position:relative;
+    z-index:2;
 
-font-size:24px;
+    margin-top:80px;
 
-font-weight:300;
+    display:flex;
 
-color:#bfbfbf;
+    gap:45px;
 
-margin-bottom:40px;
+    flex-wrap:wrap;
 
-line-height:1.5;
-
+    justify-content:center;
 }
 
-/* SMALL LINKS */
+.links a{
+    color:#8d8d8d;
 
-.mini-links{
+    text-decoration:none;
 
-display:flex;
-
-justify-content:center;
-
-gap:28px;
-
-flex-wrap:wrap;
-
+    transition:.3s;
 }
 
-.mini-links a{
-
-font-size:14px;
-
-color:#7c7c7c;
-
-text-decoration:none;
-
-transition:.3s;
-
-}
-
-.mini-links a:hover{
-
-color:white;
-
-}
-
-/* PARTNERS */
-
-.partners{
-
-padding:120px 8%;
-
-}
-
-.partners h2{
-
-text-align:center;
-
-font-size:52px;
-
-margin-bottom:60px;
-
-font-weight:800;
-
-}
-
-.grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-
-gap:30px;
-
-}
-
-.card{
-
-display:block;
-
-padding:40px;
-
-background:#0d0d0d;
-
-border:1px solid #222;
-
-border-radius:22px;
-
-text-decoration:none;
-
-transition:.35s;
-
-}
-
-.card:hover{
-
-transform:translateY(-10px);
-
-border-color:white;
-
-}
-
-.card h3{
-
-color:white;
-
-font-size:28px;
-
-margin-bottom:15px;
-
-}
-
-.card p{
-
-color:#999;
-
-line-height:1.6;
-
-}
-
-/* FOOTER */
-
-footer{
-
-padding:50px;
-
-text-align:center;
-
-color:#555;
-
-font-size:14px;
-
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-.hero h1{
-
-font-size:56px;
-
-letter-spacing:-1px;
-
-}
-
-.hero p{
-
-font-size:18px;
-
-}
-
-.logo-bg{
-
-width:115vw;
-
-}
-
-.partners h2{
-
-font-size:38px;
-
-}
-
+.links a:hover{
+    color:white;
 }
