@@ -40,7 +40,7 @@ overflow:hidden;
 
 position:absolute;
 
-width:260vmin;
+width:280vmin;
 
 max-width:none;
 
@@ -50,9 +50,9 @@ top:50%;
 
 left:50%;
 
-transform:translate(-50%,-50%) scaleX(1.18);
+transform:translate(-50%,-50%) scaleX(1.15);
 
-opacity:0.23;
+opacity:0.19;
 
 user-select:none;
 
