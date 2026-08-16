@@ -2,592 +2,144 @@
 <html lang="en">
 
 <head>
+  <meta charset="UTF-8">
 
-<meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+  <title>RunOneFlow</title>
 
-<title>RunOneFlow</title>
+  <link rel="stylesheet" href="style.css">
 
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<style>
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-
-    min-height: 100vh;
-
-    background:
-    radial-gradient(
-        circle at center,
-        #181818 0%,
-        #080808 55%,
-        #000 100%
-    );
-
-    color: white;
-
-    font-family: 'Poppins', sans-serif;
-
-    overflow-x: hidden;
-}
-
-
-/* MAIN */
-
-.hero {
-
-    min-height: 100vh;
-
-    max-width: 900px;
-
-    margin: auto;
-
-    padding: 55px 22px 60px;
-
-    text-align: center;
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-
-/* BIG LOGO BEHIND */
-
-.background-logo {
-
-    position: absolute;
-
-    width: 620px;
-
-    max-width: 120vw;
-
-    left: 50%;
-
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    opacity: 0.055;
-
-    filter: blur(.2px);
-
-    pointer-events: none;
-
-    z-index: 0;
-}
-
-
-/* CONTENT */
-
-.content {
-
-    position: relative;
-
-    z-index: 2;
-}
-
-
-/* BRAND */
-
-h1 {
-
-    font-size: clamp(
-        52px,
-        9vw,
-        92px
-    );
-
-    font-weight: 800;
-
-    letter-spacing: -4px;
-
-    line-height: 1;
-
-    margin-top: 40px;
-
-    animation:
-    titleIn 1s ease forwards;
-}
-
-
-@keyframes titleIn {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-        translateY(25px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-        translateY(0);
-
-    }
-}
-
-
-/* TAGLINE */
-
-.subtitle {
-
-    margin-top: 25px;
-
-    margin-bottom: 55px;
-
-    font-size: clamp(
-        22px,
-        4vw,
-        34px
-    );
-
-    font-weight: 400;
-
-    color: #aaa;
-
-    letter-spacing: -.5px;
-
-    animation:
-    fadeIn 1s ease .3s both;
-}
-
-
-@keyframes fadeIn {
-
-    from {
-
-        opacity: 0;
-
-    }
-
-    to {
-
-        opacity: 1;
-
-    }
-}
-
-
-/* LINKS */
-
-.links {
-
-    display: grid;
-
-    grid-template-columns:
-    repeat(2, 1fr);
-
-    gap: 18px;
-
-    max-width: 760px;
-
-    margin: auto;
-}
-
-
-/* BUTTON */
-
-.card {
-
-    min-height: 78px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 14px;
-
-    padding: 18px 25px;
-
-    border-radius: 22px;
-
-    border: 1px solid
-    rgba(255,255,255,.18);
-
-    background:
-    rgba(255,255,255,.035);
-
-    backdrop-filter:
-    blur(15px);
-
-    color: white;
-
-    text-decoration: none;
-
-    font-size: 18px;
-
-    font-weight: 500;
-
-    transition:
-    all .35s ease;
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-
-/* LIGHT EFFECT */
-
-.card::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-
-    left: -120%;
-
-    width: 100%;
-
-    height: 100%;
-
-    background:
-    linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.12),
-        transparent
-    );
-
-    transition:
-    left .7s ease;
-}
-
-
-.card:hover::before {
-
-    left: 120%;
-}
-
-
-.card:hover {
-
-    transform:
-    translateY(-5px);
-
-    border-color:
-    rgba(255,255,255,.5);
-
-    box-shadow:
-    0 15px 40px
-    rgba(0,0,0,.5);
-}
-
-
-.card:active {
-
-    transform:
-    scale(.97);
-}
-
-
-/* ICON */
-
-.icon {
-
-    font-size: 23px;
-
-    width: 28px;
-}
-
-
-/* COMMUNITY */
-
-.community {
-
-    border-color:
-    rgba(255,255,255,.4);
-}
-
-
-/* PARTNER */
-
-.partner {
-
-    grid-column:
-    span 2;
-
-    background:
-    linear-gradient(
-        135deg,
-        rgba(255,255,255,.10),
-        rgba(255,255,255,.025)
-    );
-
-    border-color:
-    rgba(255,255,255,.45);
-
-    margin-top: 5px;
-}
-
-
-/* DONATION */
-
-.donate {
-
-    max-width: 760px;
-
-    margin:
-    18px auto 0;
-
-    border-color:
-    rgba(255,255,255,.18);
-}
-
-
-/* FOOTER */
-
-.footer {
-
-    margin-top: 65px;
-
-    color: #555;
-
-    font-size: 13px;
-}
-
-
-/* MOBILE */
-
-@media (max-width: 650px) {
-
-    .hero {
-
-        padding-top: 45px;
-
-    }
-
-    .background-logo {
-
-        width: 520px;
-
-        top: 48%;
-
-    }
-
-    h1 {
-
-        font-size: 55px;
-
-        letter-spacing: -3px;
-
-        margin-top: 30px;
-
-    }
-
-    .subtitle {
-
-        font-size: 25px;
-
-        margin-top: 22px;
-
-        margin-bottom: 45px;
-
-    }
-
-    .links {
-
-        grid-template-columns: 1fr;
-
-        gap: 15px;
-
-    }
-
-    .partner {
-
-        grid-column:
-        span 1;
-
-    }
-
-    .card {
-
-        min-height: 72px;
-
-    }
-
-}
-
-</style>
-
+  <!-- Icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 
 <body>
 
+  <main class="hero">
 
-<main class="hero">
-
-
-<!-- LARGE LOGO BEHIND EVERYTHING -->
-
-<img
-    src="logo.PNG"
-    alt=""
-    class="background-logo"
->
+    <!-- Logo in background -->
+    <img src="logo.PNG"
+         class="background-logo"
+         alt="RunOneFlow logo">
 
 
-<div class="content">
+    <div class="content">
+
+      <!-- Brand -->
+      <h1>RunOneFlow</h1>
+
+      <!-- Slogan -->
+      <p class="tagline">
+        Just run.<br>
+        Just Flow.
+      </p>
 
 
-<!-- BRAND -->
+      <!-- Navigation -->
 
-<h1>
-    RunOneFlow
-</h1>
+      <div class="links">
 
+        <a href="https://nearbyrun.com"
+           target="_blank"
+           class="link">
 
-<!-- NEW TAGLINE -->
+          <span class="icon">
+            <i class="fa-solid fa-location-dot"></i>
+          </span>
 
-<div class="subtitle">
+          <span>NearbyRun</span>
 
-    Just run. Just Flow.
+          <i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
 
-</div>
-
-
-<!-- LINKS -->
-
-<div class="links">
+        </a>
 
 
-<!-- COMMUNITY -->
+        <a href="https://t.me/+1BHULZ9deIdlNTY6"
+           target="_blank"
+           class="link">
 
-<a
-    href="https://t.me/+1BHULZ9deIdlNTY6"
-    target="_blank"
-    class="card community"
->
+          <span class="icon">
+            <i class="fa-brands fa-telegram"></i>
+          </span>
 
-    <span class="icon">
-        <i class="fa-solid fa-users"></i>
-    </span>
+          <span>Community</span>
 
-    <span>
-        Community
-    </span>
+          <i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
 
-</a>
+        </a>
 
 
-<!-- NEARBYRUN -->
+        <a href="#"
+           class="link">
 
-<a
-    href="https://nearbyrun.com"
-    target="_blank"
-    class="card"
->
+          <span class="icon">
+            <i class="fa-brands fa-instagram"></i>
+          </span>
 
-    <span class="icon">
-        <i class="fa-solid fa-location-dot"></i>
-    </span>
+          <span>Instagram</span>
 
-    <span>
-        NearbyRun
-    </span>
+          <i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
 
-</a>
+        </a>
 
 
-<!-- INSTAGRAM -->
+        <a href="#"
+           class="link">
 
-<a
-    href="#"
-    class="card"
->
+          <span class="icon">
+            <i class="fa-solid fa-handshake"></i>
+          </span>
 
-    <span class="icon">
-        <i class="fa-brands fa-instagram"></i>
-    </span>
+          <span>Be a Partner</span>
 
-    <span>
-        Instagram
-    </span>
+          <i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
 
-</a>
+        </a>
 
 
-<!-- PARTNER -->
+        <!-- DONATE -->
 
-<a
-    href="partners.html"
-    class="card partner"
->
+        <a href="https://send.monobank.ua/jar/A413TS2pY2"
+           target="_blank"
+           class="link donate">
 
-    <span class="icon">
-        <i class="fa-solid fa-handshake"></i>
-    </span>
+          <span class="icon">
+            <i class="fa-solid fa-heart"></i>
+          </span>
 
-    <span>
-        Become a Partner
-    </span>
+          <span>Support the Project</span>
 
-</a>
+          <i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
 
+        </a>
 
-</div>
+      </div>
 
-
-<!-- DONATE -->
-
-<a
-    href="https://send.monobank.ua/jar/A413TS2pY2"
-    target="_blank"
-    class="card donate"
->
-
-    <span class="icon">
-        <i class="fa-solid fa-heart"></i>
-    </span>
-
-    <span>
-        Support the Project
-    </span>
-
-</a>
+    </div>
 
 
-<div class="footer">
+    <!-- Bottom -->
 
-    © 2026 RunOneFlow
+    <footer>
+      <span>© 2026 RunOneFlow</span>
+      <span>Run. Flow. Connect.</span>
+    </footer>
 
-</div>
+  </main>
 
 
-</div>
-
-</main>
-
+  <script src="script.js"></script>
 
 </body>
 
