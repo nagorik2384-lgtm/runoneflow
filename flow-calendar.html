@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flow Calendar — RunOneFlow</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/4b3f9c8c3e.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page">
+
+    <div class="about-logo"></div>
+
+    <main class="about-container">
+
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Back
+        </a>
+
+        <header class="about-header">
+
+            <div class="moon-icon">
+                🌙
+            </div>
+
+            <p class="eyebrow">RUNONEFLOW</p>
+
+            <h1>Flow Calendar</h1>
+
+            <p>
+                Train with the rhythm of your cycle.
+            </p>
+
+        </header>
+
+
+        <!-- CURRENT FLOW -->
+
+        <section class="flow-card">
+
+            <div class="flow-card-top">
+
+                <div>
+                    <span class="small-label">TODAY</span>
+
+                    <h2 id="phaseName">
+                        Loading...
+                    </h2>
+
+                    <p id="phaseDescription">
+                        Finding your current Flow.
+                    </p>
+                </div>
+
+                <div class="load-circle">
+
+                    <strong id="loadPercent">
+                        --%
+                    </strong>
+
+                    <span>
+                        recommended load
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="flow-message">
+
+                <span id="loadTitle">
+                    FLOW
+                </span>
+
+                <p id="trainingAdvice">
+                    Preparing your daily recommendation...
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- CYCLE -->
+
+        <section class="cycle-section">
+
+            <p class="small-label">
+                LUNAR CYCLE
+            </p>
+
+            <div class="cycle-days" id="cycleDays"></div>
+
+        </section>
+
+
+        <!-- INFORMATION -->
+
+        <section class="about-grid">
+
+            <div class="about-mini-card">
+
+                <span>01</span>
+
+                <h3>Observe</h3>
+
+                <p>
+                    Notice how your body feels before deciding how hard to train.
+                </p>
+
+            </div>
+
+
+            <div class="about-mini-card">
+
+                <span>02</span>
+
+                <h3>Adapt</h3>
+
+                <p>
+                    Adjust the training load according to the current Flow phase.
+                </p>
+
+            </div>
+
+
+            <div class="about-mini-card">
+
+                <span>03</span>
+
+                <h3>Move</h3>
+
+                <p>
+                    Keep moving, but respect recovery when the cycle calls for it.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <footer class="about-footer">
+
+            <p>
+                Just run. Just Flow.
+            </p>
+
+        </footer>
+
+    </main>
+
+
+<script>
+
+/*
+    RUNONEFLOW FLOW CALENDAR
+
+    This follows the qualitative load model
+    from the RunOneFlow lunar-cycle manuscript.
+
+    The percentages are a RunOneFlow interpretation
+    of the qualitative categories.
+*/
+
+
+const cycle = [
+
+    { day: 1, phase: "YANG", type: "Contraction", load: 15, title: "Rest", advice: "Recovery and gentle movement." },
+
+    { day: 2, phase: "YANG", type: "Contraction", load: 25, title: "Recovery", advice: "Easy movement. Keep the effort comfortable." },
+
+    { day: 3, phase: "YANG", type: "Contraction", load: 35, title: "Easy", advice: "Easy aerobic movement." },
+
+    { day: 4, phase: "YANG", type: "Contraction", load: 45, title: "Easy", advice: "Comfortable running. Stay relaxed." },
+
+    { day: 5, phase: "YANG", type: "Contraction", load: 60, title: "Increasing", advice: "Gradually increase the training load." },
+
+    { day: 6, phase: "YANG", type: "Contraction", load: 75, title: "Solid Load", advice: "A solid training day. Focus on quality." },
+
+    { day: 7, phase: "YANG", type: "Contraction", load: 75, title: "Solid Load", advice: "A solid training day. Finish with control." },
+
+
+    { day: 8, phase: "YIN", type: "Expansion", load: 15, title: "Rest", advice: "Recovery day. Let the body absorb the work." },
+
+    { day: 9, phase: "YIN", type: "Expansion", load: 40, title: "Reduce", advice: "Reduce the training load." },
+
+    { day: 10, phase: "YIN", type: "Expansion", load: 35, title: "Reduce", advice: "Keep training light and comfortable." },
+
+    { day: 11, phase: "YIN", type: "Expansion", load: 30, title: "Reduce", advice: "Continue reducing the load." },
+
+    { day: 12, phase: "YIN", type: "Expansion", load: 25, title: "Reduction", advice: "Prioritize recovery." },
+
+    { day: 13, phase: "YIN", type: "Expansion", load: 20, title: "Reduction", advice: "Very light movement." },
+
+    { day: 14, phase: "YIN", type: "Expansion", load: 15, title: "Reduction", advice: "Prepare for the next phase." },
+
+
+    { day: 15, phase: "YANG", type: "Contraction", load: 15, title: "Rest", advice: "Recovery and reset." },
+
+    { day: 16, phase: "YANG", type: "Contraction", load: 20, title: "Rest", advice: "Easy movement and recovery." },
+
+    { day: 17, phase: "YANG", type: "Contraction", load: 50, title: "Increasing", advice: "Begin increasing the training load." },
+
+    { day: 18, phase: "YANG", type: "Contraction", load: 60, title: "Increasing", advice: "Progress the training load carefully." },
+
+    { day: 19, phase: "YANG", type: "Contraction", load: 85, title: "Large Load", advice: "A high-load training day." },
+
+    { day: 20, phase: "YANG", type: "Contraction", load: 90, title: "Large Load", advice: "A high-load training day. Maintain control." },
+
+    { day: 21, phase: "YANG", type: "Contraction", load: 85, title: "Large Load", advice: "Finish the loading block strongly." },
+
+
+    { day: 22, phase: "YIN", type: "Expansion", load: 20, title: "Recovery", advice: "Begin reducing the training load." },
+
+    { day: 23, phase: "YIN", type: "Expansion", load: 30, title: "Reduce", advice: "Easy aerobic movement." },
+
+    { day: 24, phase: "YIN", type: "Expansion", load: 35, title: "Reduce", advice: "Keep the effort comfortable." },
+
+    { day: 25, phase: "YIN", type: "Expansion", load: 30, title: "Reduce", advice: "Continue with lighter training." },
+
+    { day: 26, phase: "YIN", type: "Expansion", load: 25, title: "Recovery", advice: "Prioritize recovery." },
+
+    { day: 27, phase: "YIN", type: "Expansion", load: 20, title: "Recovery", advice: "Light movement and restoration." },
+
+    { day: 28, phase: "YIN", type: "Expansion", load: 15, title: "Rest", advice: "Recovery day." },
+
+    { day: 29, phase: "YIN", type: "Expansion", load: 10, title: "Rest", advice: "Very light movement." },
+
+    { day: 30, phase: "YIN", type: "Expansion", load: 10, title: "Rest", advice: "Reset before the next cycle." }
+
+];
+
+
+function getCycleDay() {
+
+    /*
+       Temporary cycle calculation.
+
+       Later we will replace this with
+       the REAL astronomical moon phase.
+    */
+
+    const start = new Date("2026-08-23T00:00:00");
+
+    const today = new Date();
+
+    const difference =
+        Math.floor(
+            (today - start) / (1000 * 60 * 60 * 24)
+        );
+
+    return ((difference % 30) + 30) % 30 + 1;
+}
+
+
+function renderCalendar() {
+
+    const currentDay = getCycleDay();
+
+    const today = cycle[currentDay - 1];
+
+
+    document.getElementById("phaseName").innerText =
+        `Day ${today.day} · ${today.phase}`;
+
+
+    document.getElementById("phaseDescription").innerText =
+        `${today.type} phase`;
+
+
+    document.getElementById("loadPercent").innerText =
+        `${today.load}%`;
+
+
+    document.getElementById("loadTitle").innerText =
+        today.title;
+
+
+    document.getElementById("trainingAdvice").innerText =
+        today.advice;
+
+
+    const container =
+        document.getElementById("cycleDays");
+
+
+    cycle.forEach(item => {
+
+        const day =
+            document.createElement("div");
+
+
+        day.className =
+            "cycle-day";
+
+
+        if (item.day === currentDay) {
+
+            day.classList.add("active");
+
+        }
+
+
+        day.innerHTML =
+            `<span>${item.day}</span>`;
+
+
+        container.appendChild(day);
+
+    });
+
+}
+
+
+renderCalendar();
+
+</script>
+
+</body>
+</html>
