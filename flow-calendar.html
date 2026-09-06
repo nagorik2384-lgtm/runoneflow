@@ -977,6 +977,8 @@ function startLunarEngine() {
       getLunarData(new Date());
 
     updateTodayTraining(lunar);
+    
+    updateMoonPhaseVisual(lunar);
 
     const phase =
       getFlowPhase(lunar.flowDay);
@@ -1448,6 +1450,110 @@ function updateFlowWaves(load) {
       0.30 + readiness / 300;
   }
 
+}
+    /* ==========================================
+   DYNAMIC MOON PHASE VISUAL
+   ========================================== */
+
+function updateMoonPhaseVisual(lunar) {
+
+  const moon =
+    document.getElementById("moonBody");
+
+  const shadow =
+    document.querySelector(".moon-shadow");
+
+  if (!moon || !shadow) return;
+
+
+  const angle =
+    lunar.phaseAngle;
+
+
+  /*
+    Reset
+  */
+
+  moon.classList.remove(
+    "moon-new",
+    "moon-waxing-crescent",
+    "moon-first-quarter",
+    "moon-waxing-gibbous",
+    "moon-full",
+    "moon-waning-gibbous",
+    "moon-last-quarter",
+    "moon-waning-crescent"
+  );
+
+
+  let phaseClass = "";
+
+
+  if (angle < 11.25 || angle >= 348.75) {
+
+    phaseClass = "moon-new";
+
+  } else if (angle < 78.75) {
+
+    phaseClass = "moon-waxing-crescent";
+
+  } else if (angle < 101.25) {
+
+    phaseClass = "moon-first-quarter";
+
+  } else if (angle < 168.75) {
+
+    phaseClass = "moon-waxing-gibbous";
+
+  } else if (angle < 191.25) {
+
+    phaseClass = "moon-full";
+
+  } else if (angle < 258.75) {
+
+    phaseClass = "moon-waning-gibbous";
+
+  } else if (angle < 281.25) {
+
+    phaseClass = "moon-last-quarter";
+
+  } else {
+
+    phaseClass = "moon-waning-crescent";
+
+  }
+
+
+  moon.classList.add(phaseClass);
+
+
+  /*
+    Smooth phase shadow
+  */
+
+  let xPosition;
+
+  if (angle <= 180) {
+
+    xPosition =
+      110 - (angle / 180) * 120;
+
+  } else {
+
+    xPosition =
+      -10 + ((angle - 180) / 180) * 120;
+
+  }
+
+
+  shadow.style.background = `
+    radial-gradient(
+      circle at ${xPosition}% 50%,
+      transparent 0 42%,
+      rgba(4,9,17,.18) 52%,
+      rgba(2,6,12,.92) 72%
+    )
+  `;
 }
     
 startLunarEngine();
