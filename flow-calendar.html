@@ -1270,6 +1270,184 @@ function renderForecast() {
 
 }
     renderForecast();
+    /* ==========================================
+   TODAY TRAINING DATA
+   ========================================== */
+
+function getTrainingData(day) {
+
+  const data = {
+
+    1:  { load: 0,   mode: "REST",              advice: "Rest and recover." },
+    2:  { load: 0,   mode: "REST",              advice: "Gentle movement only." },
+
+    3:  { load: 30,  mode: "BUILD",             advice: "Begin increasing the training load." },
+    4:  { load: 60,  mode: "MODERATE ACTIVITY", advice: "Build with control." },
+
+    5:  { load: 0,   mode: "REST",              advice: "Recovery day." },
+
+    6:  { load: 100, mode: "HIGH LOAD",         advice: "Quality work. Strong training day." },
+    7:  { load: 100, mode: "HIGH LOAD",         advice: "High-load training day." },
+
+    8:  { load: 0,   mode: "REST",              advice: "Recovery." },
+    9:  { load: 0,   mode: "REST",              advice: "Recovery and easy movement." },
+
+    10: { load: 80,  mode: "MODERATE LOAD",     advice: "Begin the descending training wave." },
+    11: { load: 70,  mode: "MODERATE LOAD",     advice: "Reduce the load slightly." },
+    12: { load: 60,  mode: "EASY CONTROL",      advice: "Controlled aerobic work." },
+    13: { load: 50,  mode: "EASY",              advice: "Lower training load." },
+
+    14: { load: 0,   mode: "REST",              advice: "Recovery." },
+    15: { load: 0,   mode: "REST",              advice: "Recovery and reset." },
+    16: { load: 0,   mode: "REST",              advice: "Prepare for the next wave." },
+
+    17: { load: 70,  mode: "BUILD",             advice: "Return to a higher training load." },
+    18: { load: 50,  mode: "HYBRID LOAD",       advice: "Moderate hybrid loading day." },
+
+    19: { load: 85,  mode: "PEAK",              advice: "High-load window." },
+    20: { load: 90,  mode: "PEAK",              advice: "Large training load. Maintain control." },
+    21: { load: 85,  mode: "PEAK",              advice: "High-load window. Monitor recovery." },
+
+    22: { load: 0,   mode: "REST",              advice: "Full recovery." },
+
+    23: { load: 70,  mode: "REDUCE",            advice: "Begin reducing training load." },
+    24: { load: 60,  mode: "MODERATE ACTIVITY", advice: "Moderate training." },
+    25: { load: 50,  mode: "EASY",              advice: "Keep effort comfortable." },
+    26: { load: 40,  mode: "RECOVERY FLOW",     advice: "Lower intensity. Move easily." },
+    27: { load: 30,  mode: "RECOVERY FLOW",     advice: "Easy movement and walking." },
+    28: { load: 20,  mode: "RECOVERY FLOW",     advice: "Light movement." },
+
+    29: { load: 0,   mode: "REST",              advice: "Rest." },
+    30: { load: 0,   mode: "REST",              advice: "Reset before the next cycle." }
+
+  };
+
+  return data[day];
+}
+
+
+/* ==========================================
+   DYNAMIC CENTER
+   ========================================== */
+
+function updateTodayTraining(lunar) {
+
+  const data =
+    getTrainingData(lunar.flowDay);
+
+
+  const loadElement =
+    document.getElementById("loadPercent");
+
+  if (loadElement) {
+    loadElement.textContent =
+      data.load + "%";
+  }
+
+
+  const modeElement =
+    document.getElementById("trainingMode");
+
+  if (modeElement) {
+    modeElement.textContent =
+      data.mode;
+  }
+
+
+  const adviceElement =
+    document.getElementById("trainingAdvice");
+
+  if (adviceElement) {
+
+    const moonName =
+      getMoonPhaseName(lunar.phaseAngle);
+
+    adviceElement.textContent =
+      `${moonName} · ${data.advice}`;
+  }
+
+
+  updateFlowWaves(data.load);
+}
+
+
+/* ==========================================
+   DATA-DRIVEN WAVES
+   ========================================== */
+
+function updateFlowWaves(load) {
+
+  const wave1 =
+    document.querySelector(".moon-wave-one");
+
+  const wave2 =
+    document.querySelector(".moon-wave-two");
+
+  const wave3 =
+    document.querySelector(".moon-wave-three");
+
+
+  /*
+     LOAD
+     Higher load = stronger main wave
+  */
+
+  const loadScale =
+    0.20 + (load / 100) * 0.45;
+
+
+  /*
+     RECOVERY
+     Opposite relationship:
+     lower training load = stronger recovery wave
+  */
+
+  const recovery =
+    100 - load;
+
+  const recoveryScale =
+    0.18 + (recovery / 100) * 0.30;
+
+
+  /*
+     READINESS
+     Balanced visual signal.
+  */
+
+  const readiness =
+    50 + Math.abs(50 - load) * 0.3;
+
+  const readinessScale =
+    0.16 + (readiness / 100) * 0.22;
+
+
+  if (wave1) {
+    wave1.style.transform =
+      `rotate(7deg) scaleY(${loadScale})`;
+
+    wave1.style.opacity =
+      0.45 + load / 180;
+  }
+
+
+  if (wave2) {
+    wave2.style.transform =
+      `rotate(-5deg) scaleY(${recoveryScale})`;
+
+    wave2.style.opacity =
+      0.40 + recovery / 220;
+  }
+
+
+  if (wave3) {
+    wave3.style.transform =
+      `rotate(9deg) scaleY(${readinessScale})`;
+
+    wave3.style.opacity =
+      0.30 + readiness / 300;
+  }
+
+}
     
 startLunarEngine();
 
