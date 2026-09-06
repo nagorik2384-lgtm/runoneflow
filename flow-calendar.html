@@ -739,5 +739,335 @@
 
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+  
+  <script>
+
+/* ==========================================
+   RUNONEFLOW — INTERNATIONAL LUNAR ENGINE
+   ========================================== */
+
+
+/* User's local timezone */
+
+function getUserTimeZone() {
+  return Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+}
+
+
+/* ------------------------------------------
+   FIND PREVIOUS NEW MOON
+   ------------------------------------------ */
+
+function getPreviousNewMoon(date) {
+
+  const searchStart =
+    new Date(date.getTime() - 35 * 86400000);
+
+  let result =
+    Astronomy.SearchMoonPhase(
+      0,
+      searchStart,
+      40
+    );
+
+  if (!result) {
+    throw new Error("New Moon not found");
+  }
+
+  let previous = result.date;
+
+
+  while (true) {
+
+    const searchFrom =
+      new Date(previous.getTime() + 25 * 86400000);
+
+    const next =
+      Astronomy.SearchMoonPhase(
+        0,
+        searchFrom,
+        10
+      );
+
+    if (!next || next.date > date) {
+      break;
+    }
+
+    previous = next.date;
+  }
+
+
+  return previous;
+}
+
+
+/* ------------------------------------------
+   FIND NEXT NEW MOON
+   ------------------------------------------ */
+
+function getNextNewMoon(previousNewMoon) {
+
+  const searchFrom =
+    new Date(
+      previousNewMoon.getTime() +
+      20 * 86400000
+    );
+
+
+  const result =
+    Astronomy.SearchMoonPhase(
+      0,
+      searchFrom,
+      15
+    );
+
+
+  if (!result) {
+    throw new Error("Next New Moon not found");
+  }
+
+
+  return result.date;
+}
+
+
+/* ------------------------------------------
+   REAL LUNAR CYCLE → FLOW DAY 1–30
+   ------------------------------------------ */
+
+function getLunarData(date = new Date()) {
+
+  const previousNewMoon =
+    getPreviousNewMoon(date);
+
+
+  const nextNewMoon =
+    getNextNewMoon(previousNewMoon);
+
+
+  const cycleDuration =
+    nextNewMoon.getTime() -
+    previousNewMoon.getTime();
+
+
+  const elapsed =
+    date.getTime() -
+    previousNewMoon.getTime();
+
+
+  let progress =
+    elapsed / cycleDuration;
+
+
+  progress =
+    Math.max(
+      0,
+      Math.min(progress, 0.999999)
+    );
+
+
+  const flowDay =
+    Math.floor(progress * 30) + 1;
+
+
+  const phaseAngle =
+    Astronomy.MoonPhase(date);
+
+
+  return {
+
+    flowDay: flowDay,
+
+    progress: progress,
+
+    phaseAngle: phaseAngle,
+
+    previousNewMoon: previousNewMoon,
+
+    nextNewMoon: nextNewMoon,
+
+    timezone: getUserTimeZone()
+
+  };
+}
+
+
+/* ------------------------------------------
+   MOON PHASE NAME
+   ------------------------------------------ */
+
+function getMoonPhaseName(angle) {
+
+  if (angle < 11.25 || angle >= 348.75)
+    return "New Moon";
+
+  if (angle < 78.75)
+    return "Waxing Crescent";
+
+  if (angle < 101.25)
+    return "First Quarter";
+
+  if (angle < 168.75)
+    return "Waxing Gibbous";
+
+  if (angle < 191.25)
+    return "Full Moon";
+
+  if (angle < 258.75)
+    return "Waning Gibbous";
+
+  if (angle < 281.25)
+    return "Last Quarter";
+
+  return "Waning Crescent";
+}
+
+
+/* ------------------------------------------
+   RUNONEFLOW PHASE
+   ------------------------------------------ */
+
+function getFlowPhase(day) {
+
+  if (day <= 7) {
+    return {
+      number: "I",
+      name: "BUILD",
+      subtitle: "Activation"
+    };
+  }
+
+
+  if (day <= 15) {
+    return {
+      number: "II",
+      name: "RELEASE",
+      subtitle: "Release & Expand"
+    };
+  }
+
+
+  if (day <= 22) {
+    return {
+      number: "III",
+      name: "PEAK",
+      subtitle: "Performance"
+    };
+  }
+
+
+  return {
+    number: "IV",
+    name: "RESET",
+    subtitle: "Recovery & Balance"
+  };
+}
+
+
+/* ------------------------------------------
+   TEST + BASIC PAGE UPDATE
+   ------------------------------------------ */
+
+function startLunarEngine() {
+
+  try {
+
+    const lunar =
+      getLunarData(new Date());
+
+
+    const phase =
+      getFlowPhase(lunar.flowDay);
+
+
+    console.log(
+      "RunOneFlow Lunar Engine:",
+      lunar
+    );
+
+
+    console.log(
+      "Moon:",
+      getMoonPhaseName(lunar.phaseAngle)
+    );
+
+
+    console.log(
+      "Flow:",
+      phase.name
+    );
+
+
+    /* Update Lunar Day */
+
+    const lunarDay =
+      document.getElementById("lunarDay");
+
+    if (lunarDay) {
+      lunarDay.textContent =
+        lunar.flowDay;
+    }
+
+
+    /* Update Phase */
+
+    const phaseName =
+      document.getElementById("phaseName");
+
+    if (phaseName) {
+      phaseName.textContent =
+        phase.name;
+    }
+
+
+    /* Update Subtitle */
+
+    const phaseSubtitle =
+      document.getElementById("phaseSubtitle");
+
+    if (phaseSubtitle) {
+      phaseSubtitle.textContent =
+        phase.subtitle;
+    }
+
+
+    /* Local date */
+
+    const dateElement =
+      document.getElementById("currentDate");
+
+    if (dateElement) {
+
+      dateElement.textContent =
+        new Intl.DateTimeFormat(
+          "en-US",
+          {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+            timeZone: lunar.timezone
+          }
+        ).format(new Date());
+
+    }
+
+
+  } catch (error) {
+
+    console.error(
+      "Lunar Engine Error:",
+      error
+    );
+
+  }
+
+}
+
+
+startLunarEngine();
+
+</script>
+  
 </body>
 </html>
