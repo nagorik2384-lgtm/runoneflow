@@ -1204,3 +1204,883 @@ footer {
     opacity: 0.045;
   }
 }
+/* =========================================================
+   RUNONEFLOW FLOW CALENDAR — PREMIUM LUNAR DASHBOARD
+   ========================================================= */
+
+.flow-calendar-page {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  color: #eef4ff;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(52, 77, 130, 0.16), transparent 28%),
+    radial-gradient(circle at 85% 30%, rgba(95, 64, 170, 0.10), transparent 35%),
+    linear-gradient(180deg, #050914 0%, #07111d 48%, #03070d 100%);
+  overflow-x: hidden;
+}
+
+.flow-calendar-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,.8) 0 1px, transparent 1.2px),
+    radial-gradient(circle at 30% 12%, rgba(255,255,255,.55) 0 1px, transparent 1.2px),
+    radial-gradient(circle at 62% 18%, rgba(255,255,255,.45) 0 1px, transparent 1.2px),
+    radial-gradient(circle at 80% 8%, rgba(255,255,255,.6) 0 1px, transparent 1.2px),
+    radial-gradient(circle at 92% 28%, rgba(255,255,255,.55) 0 1px, transparent 1.2px);
+  background-size: 260px 260px;
+}
+
+.flow-app {
+  width: min(1500px, calc(100% - 36px));
+  margin: 0 auto;
+  padding: 24px 0 36px;
+}
+
+
+/* =========================
+   NAV
+   ========================= */
+
+.flow-nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 32px;
+}
+
+.flow-logo {
+  display: flex;
+  flex-direction: column;
+}
+
+.flow-logo a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -0.7px;
+}
+
+.flow-logo span {
+  margin-top: 2px;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  color: rgba(215,226,255,.6);
+  text-transform: uppercase;
+}
+
+.flow-menu {
+  display: flex;
+  gap: 36px;
+}
+
+.flow-menu a {
+  position: relative;
+  color: rgba(220,230,255,.62);
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: .5px;
+  transition: .25s ease;
+}
+
+.flow-menu a:hover,
+.flow-menu a.active {
+  color: #6feaff;
+}
+
+.flow-menu a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 2px;
+  background: linear-gradient(90deg, #50d9ff, #ad74ff);
+  box-shadow: 0 0 12px rgba(80,217,255,.5);
+}
+
+.flow-current-date {
+  justify-self: end;
+  font-size: 12px;
+  color: rgba(215,226,255,.72);
+}
+
+
+/* =========================
+   HERO GRID
+   ========================= */
+
+.flow-hero {
+  display: grid;
+  grid-template-columns: 0.95fr 1.7fr 1fr;
+  gap: 22px;
+  align-items: stretch;
+}
+
+.flow-status-card,
+.flow-forecast-card,
+.flow-chart-section,
+.phase-detail-card {
+  border: 1px solid rgba(102,151,255,.14);
+  background:
+    linear-gradient(180deg, rgba(10,21,37,.84), rgba(4,11,22,.76));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.025),
+    0 24px 55px rgba(0,0,0,.24);
+  backdrop-filter: blur(18px);
+}
+
+
+/* =========================
+   LEFT STATUS
+   ========================= */
+
+.flow-status-card {
+  border-radius: 20px;
+  padding: 30px 28px;
+}
+
+.flow-label {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  color: #85caff;
+}
+
+.flow-status-card h2 {
+  margin: 0;
+  font-size: 42px;
+  line-height: 1;
+  letter-spacing: -1.4px;
+  color: #b9e8ff;
+}
+
+.flow-status-card h3 {
+  margin: 12px 0 18px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #42bfff;
+}
+
+.flow-status-card > p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(227,235,255,.72);
+}
+
+.status-detail {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  align-items: center;
+  gap: 16px;
+  margin-top: 26px;
+}
+
+.status-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(115,127,255,.5);
+  box-shadow:
+    inset 0 0 18px rgba(111,82,255,.08),
+    0 0 20px rgba(86,137,255,.08);
+  color: #79dcff;
+  font-size: 19px;
+}
+
+.status-detail span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 9px;
+  color: rgba(206,219,255,.44);
+  letter-spacing: 1px;
+}
+
+.status-detail strong {
+  font-size: 13px;
+  font-weight: 500;
+  color: #eaf3ff;
+}
+
+.flow-status-card blockquote {
+  margin: 30px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid rgba(255,255,255,.06);
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(187,208,255,.58);
+}
+
+
+/* =========================
+   CENTER MOON
+   ========================= */
+
+.flow-moon-center {
+  position: relative;
+  min-height: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 6px;
+  overflow: visible;
+}
+
+.lunar-day-label {
+  font-size: 11px;
+  letter-spacing: 1.7px;
+  color: rgba(198,214,255,.7);
+}
+
+.lunar-day-number {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  margin-top: 2px;
+  z-index: 5;
+}
+
+.lunar-day-number strong {
+  font-size: 52px;
+  line-height: 1;
+  font-weight: 600;
+  color: #e8eeff;
+  text-shadow: 0 0 18px rgba(115,155,255,.22);
+}
+
+.lunar-day-number span {
+  font-size: 17px;
+  color: rgba(211,223,255,.65);
+}
+
+
+/* moon scene */
+
+.moon-scene {
+  position: relative;
+  width: min(510px, 88%);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  margin-top: -4px;
+}
+
+.moon-outer-ring {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  border: 2px dashed rgba(101,157,255,.34);
+  box-shadow: 0 0 30px rgba(84,126,255,.06);
+}
+
+.moon-outer-ring::after {
+  content: "";
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  top: 14%;
+  right: 4%;
+  background: #63dbff;
+  box-shadow: 0 0 15px #63dbff;
+}
+
+
+/* central moon */
+
+.moon-body {
+  position: relative;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 66% 39%, rgba(255,255,255,.72) 0 1.8%, transparent 2.1%),
+    radial-gradient(circle at 55% 64%, rgba(210,220,245,.5) 0 3%, transparent 3.4%),
+    radial-gradient(circle at 76% 56%, rgba(255,255,255,.42) 0 2%, transparent 2.4%),
+    radial-gradient(circle at 34% 25%, rgba(255,255,255,.28) 0 3.2%, transparent 3.8%),
+    radial-gradient(circle at 62% 28%, rgba(255,255,255,.16) 0 8%, transparent 9%),
+    radial-gradient(circle at 65% 42%, #e9edff 0%, #bec8e2 35%, #7684a4 62%, #39445d 78%, #121824 100%);
+
+  box-shadow:
+    inset -55px -35px 65px rgba(0,0,0,.58),
+    inset 30px 8px 48px rgba(255,255,255,.18),
+    0 0 35px rgba(113,159,255,.35),
+    0 0 90px rgba(96,107,255,.13);
+
+  z-index: 3;
+}
+
+.moon-body::before,
+.moon-body::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(41,52,78,.35);
+  box-shadow:
+    45px 22px 0 8px rgba(58,69,92,.17),
+    86px -14px 0 13px rgba(70,81,109,.13),
+    105px 62px 0 6px rgba(43,52,75,.18),
+    12px 93px 0 12px rgba(46,58,82,.18);
+}
+
+.moon-body::before {
+  width: 38px;
+  height: 38px;
+  top: 25%;
+  left: 50%;
+}
+
+.moon-body::after {
+  width: 24px;
+  height: 24px;
+  top: 55%;
+  left: 59%;
+}
+
+.moon-shadow {
+  position: absolute;
+  z-index: 5;
+  inset: -2%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 85% 50%, transparent 0 48%, rgba(4,9,17,.16) 55%, rgba(2,6,12,.88) 76%);
+}
+
+.moon-texture {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  border-radius: inherit;
+  opacity: .25;
+  background:
+    radial-gradient(circle at 30% 30%, transparent 0 2px, rgba(255,255,255,.25) 3px, transparent 4px);
+  background-size: 33px 33px;
+}
+
+
+/* flowing data waves */
+
+.moon-wave {
+  position: absolute;
+  left: -24%;
+  width: 148%;
+  height: 170px;
+  border-radius: 50%;
+  border-top: 2px solid rgba(64,173,255,.58);
+  filter: drop-shadow(0 0 7px rgba(67,157,255,.42));
+  transform-origin: center;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.moon-wave::before,
+.moon-wave::after {
+  content: "";
+  position: absolute;
+  inset: 7px 0 auto;
+  height: 100%;
+  border-radius: 50%;
+  border-top: 1px solid rgba(141,95,255,.48);
+}
+
+.moon-wave::after {
+  inset: 14px 0 auto;
+  border-top-color: rgba(238,85,255,.32);
+}
+
+.moon-wave-one {
+  top: 62%;
+  transform: rotate(7deg) scaleY(.47);
+}
+
+.moon-wave-two {
+  top: 67%;
+  transform: rotate(-5deg) scaleY(.32);
+  opacity: .65;
+}
+
+.moon-wave-three {
+  top: 72%;
+  transform: rotate(9deg) scaleY(.22);
+  opacity: .38;
+}
+
+
+/* central data */
+
+.main-load {
+  position: relative;
+  z-index: 8;
+  margin-top: -36px;
+  text-align: center;
+}
+
+.main-load strong {
+  display: block;
+  font-size: 55px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -1.5px;
+  color: #ecebff;
+  text-shadow: 0 0 26px rgba(141,106,255,.25);
+}
+
+.main-load span {
+  display: block;
+  margin-top: 8px;
+  font-size: 11px;
+  letter-spacing: 1.7px;
+  color: rgba(205,201,255,.72);
+}
+
+.training-mode {
+  margin-top: 20px;
+  min-width: 260px;
+  padding: 12px 25px;
+  text-align: center;
+  border-radius: 999px;
+  border: 1px solid rgba(92,134,255,.72);
+  background: rgba(8,15,35,.55);
+  box-shadow:
+    inset 0 0 18px rgba(110,87,255,.10),
+    0 0 20px rgba(75,113,255,.12);
+  font-size: 12px;
+  letter-spacing: .8px;
+}
+
+.training-message {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: rgba(220,225,255,.65);
+}
+
+
+/* =========================
+   RIGHT FORECAST
+   ========================= */
+
+.flow-forecast-card {
+  border-radius: 20px;
+  padding: 26px 24px;
+}
+
+.forecast-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.forecast-title h2 {
+  margin: 0;
+  font-size: 26px;
+  color: #f0f4ff;
+}
+
+.forecast-list {
+  margin-top: 16px;
+}
+
+.forecast-day {
+  display: grid;
+  grid-template-columns: 66px 38px 1fr 48px;
+  align-items: center;
+  gap: 12px;
+  min-height: 69px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.055);
+}
+
+.forecast-date strong,
+.forecast-date span,
+.forecast-phase span,
+.forecast-phase strong {
+  display: block;
+}
+
+.forecast-date strong {
+  font-size: 11px;
+  color: #dde8ff;
+}
+
+.forecast-date span,
+.forecast-phase span {
+  margin-top: 2px;
+  font-size: 10px;
+  color: rgba(194,210,243,.57);
+}
+
+.forecast-phase strong {
+  margin-top: 2px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #edf3ff;
+}
+
+.forecast-moon {
+  width: 33px;
+  height: 33px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 28px;
+  color: #dfe9ff;
+  text-shadow: 0 0 12px rgba(148,176,255,.5);
+}
+
+.forecast-load {
+  justify-self: end;
+  font-size: 13px;
+  font-weight: 600;
+  color: #79d9ff;
+}
+
+.forecast-button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(89,120,255,.52);
+  color: #e9efff;
+  background:
+    linear-gradient(180deg, rgba(25,38,74,.45), rgba(8,13,30,.5));
+  font-family: inherit;
+  cursor: pointer;
+}
+
+
+/* =========================
+   CHART
+   ========================= */
+
+.flow-chart-section {
+  margin-top: 24px;
+  padding: 28px 28px 22px;
+  border-radius: 20px;
+}
+
+.flow-chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.flow-chart-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.chart-tabs {
+  display: flex;
+  border: 1px solid rgba(92,121,204,.22);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.chart-tabs button {
+  padding: 8px 18px;
+  border: 0;
+  border-right: 1px solid rgba(255,255,255,.05);
+  background: transparent;
+  color: rgba(211,220,245,.55);
+  font-family: inherit;
+  font-size: 10px;
+}
+
+.chart-tabs button.active {
+  color: white;
+  background: linear-gradient(90deg, rgba(73,216,255,.75), rgba(139,89,255,.82));
+  box-shadow: 0 0 24px rgba(97,123,255,.22);
+}
+
+.flow-chart-wrapper {
+  position: relative;
+  margin-top: 24px;
+  height: 290px;
+  padding: 0 15px;
+  background-image:
+    linear-gradient(rgba(109,137,203,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(109,137,203,.08) 1px, transparent 1px);
+  background-size: 56px 52px;
+  border-radius: 14px;
+}
+
+#flowChart {
+  width: 100%;
+  height: 250px;
+  overflow: visible;
+}
+
+.chart-line {
+  fill: none;
+  stroke: url(#flowGradient);
+  stroke-width: 4;
+  filter: drop-shadow(0 0 7px rgba(98,104,255,.6));
+}
+
+.chart-area-fill {
+  fill: url(#flowAreaGradient);
+}
+
+.today-point {
+  fill: #d8a2ff;
+  stroke: #fff;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 9px #a94cff);
+}
+
+.chart-scale {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: rgba(205,217,243,.48);
+  font-size: 10px;
+}
+
+
+/* phase legend under chart */
+
+.flow-phase-legend {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 18px;
+}
+
+.legend-phase {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 10px;
+}
+
+.legend-moon {
+  font-size: 36px;
+  color: #e6eeff;
+  text-shadow: 0 0 14px rgba(114,151,255,.25);
+}
+
+.legend-phase strong,
+.legend-phase span {
+  display: block;
+}
+
+.legend-phase strong {
+  font-size: 12px;
+}
+
+.legend-phase span {
+  margin-top: 3px;
+  font-size: 10px;
+  color: rgba(196,209,238,.5);
+}
+
+
+/* =========================
+   PHASE CARDS
+   ========================= */
+
+.phase-details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.phase-detail-card {
+  min-height: 130px;
+  border-radius: 18px;
+  padding: 23px;
+  transition: .25s ease;
+}
+
+.phase-detail-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(93,171,255,.26);
+}
+
+.phase-detail-card span {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: rgba(185,204,238,.48);
+}
+
+.phase-detail-card h3 {
+  margin: 8px 0 2px;
+  font-size: 20px;
+  color: #72ddff;
+}
+
+.phase-detail-card:nth-child(2) h3 {
+  color: #b690ff;
+}
+
+.phase-detail-card:nth-child(3) h3 {
+  color: #e176ff;
+}
+
+.phase-detail-card:nth-child(4) h3 {
+  color: #69dfff;
+}
+
+.phase-detail-card p {
+  margin: 0;
+  font-size: 11px;
+  color: rgba(215,226,248,.62);
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.flow-footer {
+  padding: 28px 0 8px;
+  text-align: center;
+}
+
+.flow-footer p {
+  margin: 0;
+  font-size: 12px;
+  color: rgba(225,233,250,.62);
+}
+
+.flow-footer small {
+  display: block;
+  margin-top: 6px;
+  font-size: 9px;
+  color: rgba(187,200,225,.36);
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 1100px) {
+
+  .flow-hero {
+    grid-template-columns: 1fr 1.55fr;
+  }
+
+  .flow-forecast-card {
+    grid-column: 1 / -1;
+  }
+
+  .forecast-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 30px;
+  }
+}
+
+@media (max-width: 760px) {
+
+  .flow-app {
+    width: min(100% - 20px, 650px);
+  }
+
+  .flow-nav {
+    grid-template-columns: 1fr auto;
+  }
+
+  .flow-menu {
+    display: none;
+  }
+
+  .flow-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-status-card {
+    order: 2;
+  }
+
+  .flow-moon-center {
+    order: 1;
+    min-height: 580px;
+  }
+
+  .flow-forecast-card {
+    order: 3;
+  }
+
+  .moon-scene {
+    width: min(470px, 100%);
+  }
+
+  .forecast-list {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-chart-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .chart-tabs {
+    width: 100%;
+  }
+
+  .chart-tabs button {
+    flex: 1;
+    padding-inline: 8px;
+  }
+
+  .flow-phase-legend,
+  .phase-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+
+  .flow-current-date {
+    font-size: 10px;
+  }
+
+  .flow-logo a {
+    font-size: 19px;
+  }
+
+  .lunar-day-number strong {
+    font-size: 44px;
+  }
+
+  .moon-scene {
+    width: 108%;
+  }
+
+  .main-load strong {
+    font-size: 46px;
+  }
+
+  .training-mode {
+    min-width: 220px;
+  }
+
+  .flow-phase-legend,
+  .phase-details {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-chart-section {
+    padding-inline: 14px;
+  }
+}
