@@ -14,1092 +14,730 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body class="flow-dashboard-page">
+<body class="flow-calendar-page">
 
-<main class="flow-dashboard">
-
-  <!-- TOP -->
-
-  <div class="flow-navigation">
-
-    <a href="index.html" class="flow-back">
-      ← Back
-    </a>
-
-    <span id="currentDate"></span>
-
-  </div>
+  <main class="flow-app">
 
 
-  <header class="flow-topbar">
+    <!-- ============================= -->
+    <!-- TOP NAVIGATION -->
+    <!-- ============================= -->
 
-    <p class="flow-brand">
-      RUNONEFLOW
-    </p>
+    <header class="flow-nav">
 
-    <h1>
-      Flow Calendar
-    </h1>
+      <div class="flow-logo">
 
-    <p class="flow-subtitle">
-      Plan your training rhythm with the lunar cycle.
-    </p>
+        <a href="index.html">
+          RunOneFlow
+        </a>
 
-  </header>
-
-
-
-  <!-- MAIN GRID -->
-
-  <section class="flow-main-grid">
-
-
-    <!-- LEFT / TODAY -->
-
-    <div class="flow-today-panel">
-
-      <p class="tiny-label">
-        TODAY
-      </p>
-
-
-      <div class="moon-dashboard-card">
-
-
-        <div class="moon-orbit">
-
-          <div class="moon-ring ring-one"></div>
-          <div class="moon-ring ring-two"></div>
-          <div class="moon-ring ring-three"></div>
-
-
-          <div class="moon-core">
-
-            <strong id="loadPercent">
-              0%
-            </strong>
-
-            <span>
-              FLOW LOAD
-            </span>
-
-          </div>
-
-        </div>
-
-
-
-        <div class="moon-info">
-
-          <p class="tiny-label">
-            CURRENT PHASE
-          </p>
-
-          <h2 id="phaseTitle">
-            BUILD
-          </h2>
-
-          <p id="moonPhaseName">
-            New Moon
-          </p>
-
-          <div class="moon-meta">
-
-            <span id="cycleDay">
-              Lunar Day 1 / 30
-            </span>
-
-          </div>
-
-        </div>
+        <span>
+          Just run. Just Flow.
+        </span>
 
       </div>
 
 
+      <nav class="flow-menu">
 
-      <!-- TRAINING -->
+        <a href="index.html">
+          Home
+        </a>
 
-      <div class="flow-info-card">
+        <a href="flow-calendar.html" class="active">
+          Flow Calendar
+        </a>
 
-        <div class="flow-info-head">
+        <a href="#">
+          Insights
+        </a>
+
+      </nav>
+
+
+      <div class="flow-current-date" id="currentDate">
+        Sep 6, 2026
+      </div>
+
+    </header>
+
+
+
+    <!-- ============================= -->
+    <!-- HERO / MAIN DASHBOARD -->
+    <!-- ============================= -->
+
+    <section class="flow-hero">
+
+
+      <!-- LEFT INFORMATION -->
+
+      <aside class="flow-status-card">
+
+        <p class="flow-label">
+          CURRENT PHASE
+        </p>
+
+        <h2 id="phaseName">
+          RESET
+        </h2>
+
+        <h3 id="phaseSubtitle">
+          Recovery & Balance
+        </h3>
+
+        <p id="phaseDescription">
+          A time to slow down, recover and prepare for the next training cycle.
+        </p>
+
+
+        <div class="status-detail">
+
+          <div class="status-icon">
+            ◌
+          </div>
 
           <div>
 
-            <p class="tiny-label">
-              TRAINING
-            </p>
+            <span>
+              BODY FOCUS
+            </span>
 
-            <h3 id="trainingTitle">
-              Rest
-            </h3>
+            <strong id="bodyFocus">
+              Recovery
+            </strong>
 
-          </div>
-
-
-          <div
-            class="load-pill"
-            id="loadPill"
-          >
-            0%
           </div>
 
         </div>
 
 
-        <p
-          class="training-copy"
-          id="trainingAdvice"
-        >
-          Recovery.
+        <div class="status-detail">
+
+          <div class="status-icon">
+            ♨
+          </div>
+
+          <div>
+
+            <span>
+              RECOVERY
+            </span>
+
+            <strong id="recoveryFocus">
+              Easy movement
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="status-detail">
+
+          <div class="status-icon">
+            ↘
+          </div>
+
+          <div>
+
+            <span>
+              TRAINING FOCUS
+            </span>
+
+            <strong id="trainingFocus">
+              Lower intensity
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <blockquote id="flowQuote">
+          “Rest is also progress.”
+        </blockquote>
+
+      </aside>
+
+
+
+      <!-- CENTER MOON -->
+
+      <section class="flow-moon-center">
+
+        <div class="lunar-day-label">
+          LUNAR DAY
+        </div>
+
+        <div class="lunar-day-number">
+
+          <strong id="lunarDay">
+            25
+          </strong>
+
+          <span>
+            / 30
+          </span>
+
+        </div>
+
+
+        <div class="moon-scene">
+
+          <div class="moon-outer-ring"></div>
+
+          <div class="moon-wave moon-wave-one"></div>
+          <div class="moon-wave moon-wave-two"></div>
+          <div class="moon-wave moon-wave-three"></div>
+
+          <div class="moon-body" id="moonBody">
+
+            <div class="moon-shadow"></div>
+            <div class="moon-texture"></div>
+
+          </div>
+
+        </div>
+
+
+        <div class="main-load">
+
+          <strong id="loadPercent">
+            30%
+          </strong>
+
+          <span>
+            RECOMMENDED LOAD
+          </span>
+
+        </div>
+
+
+        <div class="training-mode" id="trainingMode">
+          MODERATE ACTIVITY
+        </div>
+
+
+        <p class="training-message" id="trainingAdvice">
+          Keep it light. Move. Breathe. Recover.
         </p>
 
-
-        <div class="load-bar">
-
-          <div
-            class="load-bar-fill"
-            id="loadBarFill"
-          ></div>
-
-        </div>
-
-      </div>
+      </section>
 
 
 
-      <!-- PHASE INFO -->
+      <!-- RIGHT FORECAST -->
 
-      <div class="phase-summary">
+      <aside class="flow-forecast-card">
 
-        <div>
+        <div class="forecast-title">
 
-          <span>
-            PHASE
-          </span>
+          <div>
 
-          <strong id="phaseNumber">
-            I
-          </strong>
+            <p class="flow-label">
+              PLAN AHEAD
+            </p>
+
+            <h2>
+              Next 7 Days
+            </h2>
+
+          </div>
 
         </div>
 
 
-        <div>
+        <div class="forecast-list" id="forecastList">
 
-          <span>
-            MODE
-          </span>
 
-          <strong id="phaseMode">
-            BUILD
-          </strong>
+          <div class="forecast-day">
+
+            <div class="forecast-date">
+              <strong>MON</strong>
+              <span>Sep 7</span>
+            </div>
+
+            <div class="forecast-moon">
+              ◐
+            </div>
+
+            <div class="forecast-phase">
+              <span>Day 26</span>
+              <strong>RESET</strong>
+            </div>
+
+            <div class="forecast-load">
+              25%
+            </div>
+
+          </div>
+
+
+          <div class="forecast-day">
+
+            <div class="forecast-date">
+              <strong>TUE</strong>
+              <span>Sep 8</span>
+            </div>
+
+            <div class="forecast-moon">
+              ◐
+            </div>
+
+            <div class="forecast-phase">
+              <span>Day 27</span>
+              <strong>RESET</strong>
+            </div>
+
+            <div class="forecast-load">
+              20%
+            </div>
+
+          </div>
+
+
+          <div class="forecast-day">
+
+            <div class="forecast-date">
+              <strong>WED</strong>
+              <span>Sep 9</span>
+            </div>
+
+            <div class="forecast-moon">
+              ◐
+            </div>
+
+            <div class="forecast-phase">
+              <span>Day 28</span>
+              <strong>RESET</strong>
+            </div>
+
+            <div class="forecast-load">
+              15%
+            </div>
+
+          </div>
+
+
+          <div class="forecast-day">
+
+            <div class="forecast-date">
+              <strong>THU</strong>
+              <span>Sep 10</span>
+            </div>
+
+            <div class="forecast-moon">
+              ◐
+            </div>
+
+            <div class="forecast-phase">
+              <span>Day 29</span>
+              <strong>RESET</strong>
+            </div>
+
+            <div class="forecast-load">
+              0%
+            </div>
+
+          </div>
+
+
+          <div class="forecast-day">
+
+            <div class="forecast-date">
+              <strong>FRI</strong>
+              <span>Sep 11</span>
+            </div>
+
+            <div class="forecast-moon">
+              ◐
+            </div>
+
+            <div class="forecast-phase">
+              <span>Day 30</span>
+              <strong>RESET</strong>
+            </div>
+
+            <div class="forecast-load">
+              0%
+            </div>
+
+          </div>
+
+
+          <div class="forecast-day">
+
+            <div class="forecast-date">
+              <strong>SAT</strong>
+              <span>Sep 12</span>
+            </div>
+
+            <div class="forecast-moon">
+              ◑
+            </div>
+
+            <div class="forecast-phase">
+              <span>Day 1</span>
+              <strong>BUILD</strong>
+            </div>
+
+            <div class="forecast-load">
+              0%
+            </div>
+
+          </div>
+
+
+          <div class="forecast-day">
+
+            <div class="forecast-date">
+              <strong>SUN</strong>
+              <span>Sep 13</span>
+            </div>
+
+            <div class="forecast-moon">
+              ◑
+            </div>
+
+            <div class="forecast-phase">
+              <span>Day 2</span>
+              <strong>BUILD</strong>
+            </div>
+
+            <div class="forecast-load">
+              0%
+            </div>
+
+          </div>
 
         </div>
 
 
-        <div>
+        <button class="forecast-button">
+          View Full Calendar →
+        </button>
 
-          <span>
-            LUNAR DAY
-          </span>
+      </aside>
 
-          <strong id="phaseDay">
-            1
-          </strong>
-
-        </div>
-
-      </div>
-
-    </div>
+    </section>
 
 
 
-    <!-- RIGHT / FORECAST -->
+    <!-- ============================= -->
+    <!-- 30 DAY GRAPH -->
+    <!-- ============================= -->
 
-    <aside class="flow-forecast">
+    <section class="flow-chart-section">
 
-      <div class="forecast-header">
+      <div class="flow-chart-header">
 
         <div>
 
-          <p class="tiny-label">
-            PLAN AHEAD
+          <p class="flow-label">
+            FLOW CYCLE
           </p>
 
           <h2>
-            Next 7 Days
+            30-Day Training Rhythm
           </h2>
 
         </div>
 
-        <span class="forecast-arrow">
-          ↗
+
+        <div class="chart-tabs">
+
+          <button class="active">
+            Load
+          </button>
+
+          <button>
+            Energy
+          </button>
+
+          <button>
+            Focus
+          </button>
+
+          <button>
+            Recovery
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="flow-chart-wrapper">
+
+        <svg
+          id="flowChart"
+          viewBox="0 0 1000 280"
+          preserveAspectRatio="none"
+        >
+
+          <defs>
+
+            <linearGradient
+              id="flowGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
+
+              <stop offset="0%" stop-color="#33d6ff"/>
+              <stop offset="50%" stop-color="#8367ff"/>
+              <stop offset="100%" stop-color="#ff56d7"/>
+
+            </linearGradient>
+
+
+            <linearGradient
+              id="flowAreaGradient"
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
+
+              <stop
+                offset="0%"
+                stop-color="#8a65ff"
+                stop-opacity="0.45"
+              />
+
+              <stop
+                offset="100%"
+                stop-color="#8a65ff"
+                stop-opacity="0"
+              />
+
+            </linearGradient>
+
+          </defs>
+
+
+          <path
+            id="chartArea"
+            class="chart-area-fill"
+          ></path>
+
+
+          <polyline
+            id="chartLine"
+            class="chart-line"
+            points=""
+          ></polyline>
+
+
+          <circle
+            id="todayPoint"
+            r="8"
+            class="today-point"
+          ></circle>
+
+        </svg>
+
+
+        <div class="chart-scale">
+
+          <span>1</span>
+          <span>7</span>
+          <span>15</span>
+          <span>22</span>
+          <span>30</span>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- PHASE LEGEND -->
+
+      <div class="flow-phase-legend">
+
+        <div class="legend-phase">
+
+          <div class="legend-moon">
+            ◔
+          </div>
+
+          <div>
+
+            <strong>
+              BUILD
+            </strong>
+
+            <span>
+              Day 1–7
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="legend-phase">
+
+          <div class="legend-moon">
+            ◑
+          </div>
+
+          <div>
+
+            <strong>
+              RELEASE
+            </strong>
+
+            <span>
+              Day 8–15
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="legend-phase">
+
+          <div class="legend-moon">
+            ●
+          </div>
+
+          <div>
+
+            <strong>
+              PEAK
+            </strong>
+
+            <span>
+              Day 16–22
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="legend-phase">
+
+          <div class="legend-moon">
+            ◐
+          </div>
+
+          <div>
+
+            <strong>
+              RESET
+            </strong>
+
+            <span>
+              Day 23–30
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ============================= -->
+    <!-- PHASE CARDS -->
+    <!-- ============================= -->
+
+    <section class="phase-details">
+
+      <article class="phase-detail-card">
+
+        <span>
+          DAY 1–7
         </span>
-
-      </div>
-
-
-      <div
-        class="forecast-list"
-        id="forecastList"
-      >
-      </div>
-
-    </aside>
-
-
-  </section>
-
-
-
-  <!-- GRAPH -->
-
-  <section class="flow-chart-card">
-
-    <div class="chart-head">
-
-      <div>
-
-        <p class="tiny-label">
-          FLOW CYCLE
-        </p>
 
         <h3>
-          30-Day Training Rhythm
+          BUILD
         </h3>
 
-      </div>
+        <p>
+          Activation
+        </p>
 
+      </article>
 
-      <span class="cycle-status">
-        RunOneFlow Model
-      </span>
 
-    </div>
-
-
-    <div class="chart-area">
-
-      <svg
-        id="flowChart"
-        viewBox="0 0 600 220"
-        preserveAspectRatio="none"
-      >
-
-        <defs>
-
-          <linearGradient
-            id="lineGradient"
-            x1="0%"
-            y1="0%"
-            x2="100%"
-            y2="0%"
-          >
-
-            <stop
-              offset="0%"
-              stop-color="#31d8ff"
-            />
-
-            <stop
-              offset="50%"
-              stop-color="#8f5cff"
-            />
-
-            <stop
-              offset="100%"
-              stop-color="#ff4fd8"
-            />
-
-          </linearGradient>
-
-
-          <linearGradient
-            id="areaGradient"
-            x1="0%"
-            y1="0%"
-            x2="0%"
-            y2="100%"
-          >
-
-            <stop
-              offset="0%"
-              stop-color="#8f5cff"
-              stop-opacity="0.35"
-            />
-
-            <stop
-              offset="100%"
-              stop-color="#8f5cff"
-              stop-opacity="0"
-            />
-
-          </linearGradient>
-
-        </defs>
-
-
-        <line
-          x1="0"
-          y1="180"
-          x2="600"
-          y2="180"
-          class="grid-line"
-        />
-
-        <line
-          x1="0"
-          y1="135"
-          x2="600"
-          y2="135"
-          class="grid-line"
-        />
-
-        <line
-          x1="0"
-          y1="90"
-          x2="600"
-          y2="90"
-          class="grid-line"
-        />
-
-        <line
-          x1="0"
-          y1="45"
-          x2="600"
-          y2="45"
-          class="grid-line"
-        />
-
-
-        <path
-          id="chartArea"
-          class="chart-area-fill"
-        ></path>
-
-
-        <polyline
-          id="chartLine"
-          class="chart-line"
-          points=""
-        ></polyline>
-
-
-        <circle
-          id="todayPoint"
-          r="7"
-          class="today-point"
-        ></circle>
-
-      </svg>
-
-
-      <div class="chart-days">
-
-        <span>1</span>
-        <span>7</span>
-        <span>15</span>
-        <span>22</span>
-        <span>30</span>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- FOUR PHASES -->
-
-  <section class="phase-row">
-
-    <div class="phase-card">
-
-      <span>
-        01–07
-      </span>
-
-      <strong>
-        BUILD
-      </strong>
-
-      <p>
-        Activation
-      </p>
-
-    </div>
-
-
-    <div class="phase-card">
-
-      <span>
-        08–15
-      </span>
-
-      <strong>
-        RELEASE
-      </strong>
-
-      <p>
-        Reduce
-      </p>
-
-    </div>
-
-
-    <div class="phase-card">
-
-      <span>
-        16–22
-      </span>
-
-      <strong>
-        PEAK
-      </strong>
-
-      <p>
-        Performance
-      </p>
-
-    </div>
-
-
-    <div class="phase-card">
-
-      <span>
-        23–30
-      </span>
-
-      <strong>
-        RESET
-      </strong>
-
-      <p>
-        Recovery
-      </p>
-
-    </div>
-
-  </section>
-
-
-
-  <footer class="flow-footer">
-
-    <p>
-      Just run. Just Flow.
-    </p>
-
-    <small>
-      Flow Calendar is an experimental training-planning model
-      and is not medical advice.
-    </small>
-
-  </footer>
-
-</main>
-
-
-<script>
-
-/* =======================================================
-   RUNONEFLOW — 30 DAY FLOW MODEL
-   ======================================================= */
-
-
-const cycle = [
-
-  {day:1,  load:0,   title:"Rest",       advice:"Rest and recovery."},
-  {day:2,  load:0,   title:"Rest",       advice:"Rest and gentle movement."},
-
-  {day:3,  load:30,  title:"Build",      advice:"Begin increasing the training load."},
-  {day:4,  load:60,  title:"Build",      advice:"Moderate training. Build with control."},
-
-  {day:5,  load:0,   title:"Rest",       advice:"Recovery day."},
-
-  {day:6,  load:100, title:"High Load",  advice:"Solid training load. Quality work."},
-  {day:7,  load:100, title:"High Load",  advice:"High-load training day."},
-
-
-  {day:8,  load:0,   title:"Rest",       advice:"Recovery."},
-  {day:9,  load:0,   title:"Rest",       advice:"Recovery and easy movement."},
-
-  {day:10, load:80,  title:"Moderate",   advice:"Begin the descending training wave."},
-  {day:11, load:70,  title:"Moderate",   advice:"Reduce the load slightly."},
-  {day:12, load:60,  title:"Easy",       advice:"Controlled aerobic work."},
-  {day:13, load:50,  title:"Easy",       advice:"Lower training load."},
-
-  {day:14, load:0,   title:"Rest",       advice:"Recovery."},
-  {day:15, load:0,   title:"Rest",       advice:"Recovery and reset."},
-  {day:16, load:0,   title:"Rest",       advice:"Prepare for the next training wave."},
-
-
-  /*
-     HYBRID RISING WAVE
-     Not a linear progression.
-  */
-
-  {day:17, load:70,  title:"Build",      advice:"Return to a higher training load."},
-  {day:18, load:50,  title:"Build",      advice:"Hybrid loading day. Moderate effort."},
-
-
-  {day:19, load:85,  title:"Peak",       advice:"High-load window. Recovery may also be appropriate."},
-  {day:20, load:90,  title:"Peak",       advice:"Large training load. Use with caution."},
-  {day:21, load:85,  title:"Peak",       advice:"High-load window. Listen to recovery signals."},
-
-  {day:22, load:0,   title:"Rest",       advice:"Full recovery."},
-
-
-  {day:23, load:70,  title:"Reduce",     advice:"Begin reducing training load."},
-  {day:24, load:60,  title:"Reduce",     advice:"Moderate training."},
-  {day:25, load:50,  title:"Reduce",     advice:"Keep effort comfortable."},
-  {day:26, load:40,  title:"Recovery",   advice:"Lower intensity and move more easily."},
-  {day:27, load:30,  title:"Recovery",   advice:"Easy movement and walking."},
-  {day:28, load:20,  title:"Recovery",   advice:"Light movement."},
-
-  {day:29, load:0,   title:"Rest",       advice:"Rest."},
-  {day:30, load:0,   title:"Rest",       advice:"Reset before the next lunar cycle."}
-
-];
-
-
-
-/* =======================================================
-   REAL LUNAR AGE — ASTRONOMICAL APPROXIMATION
-   ======================================================= */
-
-
-/*
-   Reference new moon:
-   6 January 2000, 18:14 UTC
-
-   Mean synodic lunar month:
-   29.530588853 days
-*/
-
-
-const SYNODIC_MONTH = 29.530588853;
-
-const KNOWN_NEW_MOON =
-  Date.UTC(
-    2000,
-    0,
-    6,
-    18,
-    14,
-    0
-  );
-
-
-
-function getLunarAge(date) {
-
-  const millisecondsPerDay =
-    1000 * 60 * 60 * 24;
-
-
-  const daysSinceReference =
-    (date.getTime() - KNOWN_NEW_MOON)
-    / millisecondsPerDay;
-
-
-  let age =
-    daysSinceReference % SYNODIC_MONTH;
-
-
-  if (age < 0) {
-    age += SYNODIC_MONTH;
-  }
-
-
-  return age;
-
-}
-
-
-
-/* =======================================================
-   CONVERT REAL LUNAR AGE → RUNONEFLOW DAY 1–30
-   ======================================================= */
-
-
-function getFlowDay(date) {
-
-  const age =
-    getLunarAge(date);
-
-
-  let day =
-    Math.floor(
-      (age / SYNODIC_MONTH) * 30
-    ) + 1;
-
-
-  if (day > 30) {
-    day = 30;
-  }
-
-
-  return day;
-
-}
-
-
-
-/* =======================================================
-   MOON PHASE NAME
-   ======================================================= */
-
-
-function getMoonPhaseName(date) {
-
-  const age =
-    getLunarAge(date);
-
-
-  const fraction =
-    age / SYNODIC_MONTH;
-
-
-  if (
-    fraction < 0.03 ||
-    fraction >= 0.97
-  ) {
-    return "New Moon";
-  }
-
-
-  if (fraction < 0.22) {
-    return "Waxing Crescent";
-  }
-
-
-  if (fraction < 0.28) {
-    return "First Quarter";
-  }
-
-
-  if (fraction < 0.47) {
-    return "Waxing Gibbous";
-  }
-
-
-  if (fraction < 0.53) {
-    return "Full Moon";
-  }
-
-
-  if (fraction < 0.72) {
-    return "Waning Gibbous";
-  }
-
-
-  if (fraction < 0.78) {
-    return "Last Quarter";
-  }
-
-
-  return "Waning Crescent";
-
-}
-
-
-
-/* =======================================================
-   RUNONEFLOW PHASES
-   ======================================================= */
-
-
-function getPhase(day) {
-
-  if (day <= 7) {
-
-    return {
-      number:"I",
-      name:"BUILD"
-    };
-
-  }
-
-
-  if (day <= 15) {
-
-    return {
-      number:"II",
-      name:"RELEASE"
-    };
-
-  }
-
-
-  if (day <= 22) {
-
-    return {
-      number:"III",
-      name:"PEAK"
-    };
-
-  }
-
-
-  return {
-    number:"IV",
-    name:"RESET"
-  };
-
-}
-
-
-
-/* =======================================================
-   TODAY
-   ======================================================= */
-
-
-function renderToday() {
-
-  const now =
-    new Date();
-
-
-  const flowDay =
-    getFlowDay(now);
-
-
-  const data =
-    cycle[flowDay - 1];
-
-
-  const phase =
-    getPhase(flowDay);
-
-
-
-  document.getElementById(
-    "currentDate"
-  ).innerText =
-
-    now.toLocaleDateString(
-      "en-US",
-      {
-        month:"short",
-        day:"numeric",
-        year:"numeric"
-      }
-    );
-
-
-
-  document.getElementById(
-    "loadPercent"
-  ).innerText =
-    data.load + "%";
-
-
-  document.getElementById(
-    "loadPill"
-  ).innerText =
-    data.load + "%";
-
-
-  document.getElementById(
-    "loadBarFill"
-  ).style.width =
-    data.load + "%";
-
-
-  document.getElementById(
-    "phaseTitle"
-  ).innerText =
-    phase.name;
-
-
-  document.getElementById(
-    "moonPhaseName"
-  ).innerText =
-    getMoonPhaseName(now);
-
-
-  document.getElementById(
-    "cycleDay"
-  ).innerText =
-    `Lunar Day ${flowDay} / 30`;
-
-
-  document.getElementById(
-    "trainingTitle"
-  ).innerText =
-    data.title;
-
-
-  document.getElementById(
-    "trainingAdvice"
-  ).innerText =
-    data.advice;
-
-
-  document.getElementById(
-    "phaseNumber"
-  ).innerText =
-    phase.number;
-
-
-  document.getElementById(
-    "phaseMode"
-  ).innerText =
-    phase.name;
-
-
-  document.getElementById(
-    "phaseDay"
-  ).innerText =
-    flowDay;
-
-
-
-  renderForecast(now);
-
-  renderChart(flowDay);
-
-}
-
-
-
-/* =======================================================
-   NEXT 7 DAYS
-   ======================================================= */
-
-
-function renderForecast(today) {
-
-  const container =
-    document.getElementById(
-      "forecastList"
-    );
-
-
-  container.innerHTML = "";
-
-
-  for (
-    let offset = 1;
-    offset <= 7;
-    offset++
-  ) {
-
-    const futureDate =
-      new Date(today);
-
-
-    futureDate.setDate(
-      today.getDate() + offset
-    );
-
-
-    const flowDay =
-      getFlowDay(futureDate);
-
-
-    const data =
-      cycle[flowDay - 1];
-
-
-    const phase =
-      getPhase(flowDay);
-
-
-
-    const row =
-      document.createElement("div");
-
-
-    row.className =
-      "forecast-item";
-
-
-    row.innerHTML = `
-
-      <div class="forecast-date">
-
-        <strong>
-          ${futureDate
-            .toLocaleDateString(
-              "en-US",
-              {
-                weekday:"short"
-              }
-            )
-            .toUpperCase()}
-        </strong>
+      <article class="phase-detail-card">
 
         <span>
-          ${futureDate
-            .toLocaleDateString(
-              "en-US",
-              {
-                month:"short",
-                day:"numeric"
-              }
-            )}
+          DAY 8–15
         </span>
 
-      </div>
+        <h3>
+          RELEASE
+        </h3>
+
+        <p>
+          Release & Expand
+        </p>
+
+      </article>
 
 
-      <div class="forecast-middle">
-
-        <strong>
-          ${phase.name}
-        </strong>
+      <article class="phase-detail-card">
 
         <span>
-          Lunar Day ${flowDay}
+          DAY 16–22
         </span>
 
-      </div>
+        <h3>
+          PEAK
+        </h3>
+
+        <p>
+          Performance
+        </p>
+
+      </article>
 
 
-      <div class="forecast-load">
+      <article class="phase-detail-card">
 
-        ${data.load}%
+        <span>
+          DAY 23–30
+        </span>
 
-      </div>
+        <h3>
+          RESET
+        </h3>
 
-    `;
+        <p>
+          Recovery
+        </p>
 
+      </article>
 
-    container.appendChild(row);
-
-  }
-
-}
-
-
-
-/* =======================================================
-   30-DAY CHART
-   ======================================================= */
-
-
-function renderChart(currentDay) {
-
-  const width =
-    600;
-
-
-  const baseY =
-    180;
-
-
-  const maxGraphHeight =
-    145;
+    </section>
 
 
 
-  const points =
-    cycle.map(
-      (item, index) => {
+    <footer class="flow-footer">
 
-        const x =
-          (index / 29)
-          * width;
+      <p>
+        Just run. Just Flow.
+      </p>
 
+      <small>
+        Flow Calendar is an experimental training-planning model.
+      </small>
 
-        const y =
-          baseY -
-          (
-            item.load / 100
-          )
-          * maxGraphHeight;
+    </footer>
 
-
-        return {
-          x:x,
-          y:y
-        };
-
-      }
-    );
-
-
-
-  const pointString =
-    points
-      .map(
-        point =>
-          `${point.x},${point.y}`
-      )
-      .join(" ");
-
-
-
-  document
-    .getElementById(
-      "chartLine"
-    )
-    .setAttribute(
-      "points",
-      pointString
-    );
-
-
-
-  const areaPath =
-
-    `M 0 ${baseY} L ` +
-
-    points
-      .map(
-        point =>
-          `${point.x} ${point.y}`
-      )
-      .join(" L ") +
-
-    ` L ${width} ${baseY} Z`;
-
-
-
-  document
-    .getElementById(
-      "chartArea"
-    )
-    .setAttribute(
-      "d",
-      areaPath
-    );
-
-
-
-  const todayPoint =
-    points[currentDay - 1];
-
-
-  const marker =
-    document.getElementById(
-      "todayPoint"
-    );
-
-
-  marker.setAttribute(
-    "cx",
-    todayPoint.x
-  );
-
-
-  marker.setAttribute(
-    "cy",
-    todayPoint.y
-  );
-
-}
-
-
-
-renderToday();
-
-</script>
+  </main>
 
 </body>
 </html>
