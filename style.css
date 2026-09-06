@@ -2084,3 +2084,78 @@ footer {
     padding-inline: 14px;
   }
 }
+/* ==========================================
+   MOON PHASE STATES
+   ========================================== */
+
+.moon-body {
+  transition:
+    box-shadow 0.8s ease,
+    filter 0.8s ease,
+    opacity 0.8s ease;
+}
+
+
+/* NEW MOON */
+
+.moon-new {
+  filter: brightness(.28);
+  box-shadow:
+    inset 0 0 80px rgba(0,0,0,.95),
+    0 0 25px rgba(80,100,170,.12);
+}
+
+
+/* WAXING CRESCENT */
+
+.moon-waxing-crescent {
+  filter: brightness(.68);
+}
+
+
+/* FIRST QUARTER */
+
+.moon-first-quarter {
+  filter: brightness(.82);
+}
+
+
+/* WAXING GIBBOUS */
+
+.moon-waxing-gibbous {
+  filter: brightness(.95);
+}
+
+
+/* FULL MOON */
+
+.moon-full {
+  filter: brightness(1.22);
+  box-shadow:
+    inset -20px -15px 40px rgba(0,0,0,.2),
+    inset 22px 10px 45px rgba(255,255,255,.18),
+    0 0 35px rgba(180,210,255,.55),
+    0 0 95px rgba(120,140,255,.28),
+    0 0 150px rgba(100,110,255,.12);
+}
+
+
+/* WANING GIBBOUS */
+
+.moon-waning-gibbous {
+  filter: brightness(.95);
+}
+
+
+/* LAST QUARTER */
+
+.moon-last-quarter {
+  filter: brightness(.78);
+}
+
+
+/* WANING CRESCENT */
+
+.moon-waning-crescent {
+  filter: brightness(.58);
+}
