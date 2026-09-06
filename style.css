@@ -2159,3 +2159,205 @@ footer {
 .moon-waning-crescent {
   filter: brightness(.58);
 }
+/* ==========================================
+   ANIMATED FLOW WAVES
+   ========================================== */
+
+.moon-wave {
+  will-change: transform, opacity;
+}
+
+
+/* LOAD WAVE */
+
+.moon-wave-one {
+  animation:
+    flowWaveLoad 7s ease-in-out infinite;
+}
+
+
+/* RECOVERY WAVE */
+
+.moon-wave-two {
+  animation:
+    flowWaveRecovery 9s ease-in-out infinite;
+}
+
+
+/* READINESS WAVE */
+
+.moon-wave-three {
+  animation:
+    flowWaveReadiness 11s ease-in-out infinite;
+}
+
+
+/* ==========================================
+   LOAD
+   ========================================== */
+
+@keyframes flowWaveLoad {
+
+  0% {
+    margin-left: -10px;
+    filter:
+      drop-shadow(0 0 5px rgba(67,157,255,.28));
+  }
+
+  50% {
+    margin-left: 12px;
+    filter:
+      drop-shadow(0 0 13px rgba(67,157,255,.58));
+  }
+
+  100% {
+    margin-left: -10px;
+    filter:
+      drop-shadow(0 0 5px rgba(67,157,255,.28));
+  }
+
+}
+
+
+/* ==========================================
+   RECOVERY
+   ========================================== */
+
+@keyframes flowWaveRecovery {
+
+  0% {
+    margin-left: 10px;
+    filter:
+      drop-shadow(0 0 4px rgba(137,96,255,.25));
+  }
+
+  50% {
+    margin-left: -14px;
+    filter:
+      drop-shadow(0 0 11px rgba(137,96,255,.52));
+  }
+
+  100% {
+    margin-left: 10px;
+    filter:
+      drop-shadow(0 0 4px rgba(137,96,255,.25));
+  }
+
+}
+
+
+/* ==========================================
+   READINESS
+   ========================================== */
+
+@keyframes flowWaveReadiness {
+
+  0% {
+    margin-left: -4px;
+    filter:
+      drop-shadow(0 0 3px rgba(238,85,255,.20));
+  }
+
+  50% {
+    margin-left: 8px;
+    filter:
+      drop-shadow(0 0 9px rgba(238,85,255,.42));
+  }
+
+  100% {
+    margin-left: -4px;
+    filter:
+      drop-shadow(0 0 3px rgba(238,85,255,.20));
+  }
+
+}
+
+
+/* ==========================================
+   INTERNAL WAVE MOTION
+   ========================================== */
+
+.moon-wave::before {
+  animation:
+    innerWaveOne 6s ease-in-out infinite;
+}
+
+.moon-wave::after {
+  animation:
+    innerWaveTwo 8s ease-in-out infinite;
+}
+
+
+@keyframes innerWaveOne {
+
+  0% {
+    transform:
+      translateX(-8px)
+      scaleY(.96);
+  }
+
+  50% {
+    transform:
+      translateX(12px)
+      scaleY(1.08);
+  }
+
+  100% {
+    transform:
+      translateX(-8px)
+      scaleY(.96);
+  }
+
+}
+
+
+@keyframes innerWaveTwo {
+
+  0% {
+    transform:
+      translateX(10px)
+      scaleY(1.04);
+  }
+
+  50% {
+    transform:
+      translateX(-10px)
+      scaleY(.93);
+  }
+
+  100% {
+    transform:
+      translateX(10px)
+      scaleY(1.04);
+  }
+
+}
+
+
+/* ==========================================
+   SMOOTH APPEARANCE
+   ========================================== */
+
+.moon-wave,
+.moon-wave::before,
+.moon-wave::after {
+  transition:
+    opacity .8s ease,
+    filter .8s ease,
+    transform .8s ease;
+}
+
+
+/* ==========================================
+   REDUCED MOTION ACCESSIBILITY
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .moon-wave,
+  .moon-wave::before,
+  .moon-wave::after {
+    animation: none !important;
+  }
+
+}
