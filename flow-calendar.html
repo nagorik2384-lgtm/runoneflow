@@ -1065,6 +1065,212 @@ function startLunarEngine() {
 }
 
 
+  /* ==========================================
+   RUNONEFLOW — TRAINING LOAD MODEL
+   ========================================== */
+
+const flowLoads = {
+  1: 0,
+  2: 0,
+  3: 30,
+  4: 60,
+  5: 0,
+  6: 100,
+  7: 100,
+
+  8: 0,
+  9: 0,
+  10: 80,
+  11: 70,
+  12: 60,
+  13: 50,
+  14: 0,
+  15: 0,
+
+  16: 0,
+  17: 70,
+  18: 50,
+  19: 85,
+  20: 90,
+  21: 85,
+  22: 0,
+
+  23: 70,
+  24: 60,
+  25: 50,
+  26: 40,
+  27: 30,
+  28: 20,
+  29: 0,
+  30: 0
+};
+
+
+/* ==========================================
+   SMALL MOON SYMBOL
+   ========================================== */
+
+function getMoonSymbol(angle) {
+
+  if (angle < 22.5 || angle >= 337.5)
+    return "●";
+
+  if (angle < 67.5)
+    return "◔";
+
+  if (angle < 112.5)
+    return "◑";
+
+  if (angle < 157.5)
+    return "◕";
+
+  if (angle < 202.5)
+    return "○";
+
+  if (angle < 247.5)
+    return "◕";
+
+  if (angle < 292.5)
+    return "◐";
+
+  return "◔";
+}
+
+
+/* ==========================================
+   NEXT 7 DAYS
+   ========================================== */
+
+function renderForecast() {
+
+  const container =
+    document.getElementById("forecastList");
+
+  if (!container) return;
+
+
+  container.innerHTML = "";
+
+
+  const today =
+    new Date();
+
+
+  for (let i = 1; i <= 7; i++) {
+
+    /*
+      We calculate every future date independently.
+
+      This is important because a New Moon
+      can occur during the coming week.
+    */
+
+    const future =
+      new Date(today);
+
+
+    future.setDate(
+      future.getDate() + i
+    );
+
+
+    const lunar =
+      getLunarData(future);
+
+
+    const phase =
+      getFlowPhase(lunar.flowDay);
+
+
+    const load =
+      flowLoads[lunar.flowDay] ?? 0;
+
+
+    const moon =
+      getMoonSymbol(
+        lunar.phaseAngle
+      );
+
+
+    const weekday =
+      new Intl.DateTimeFormat(
+        "en-US",
+        {
+          weekday: "short",
+          timeZone: lunar.timezone
+        }
+      )
+      .format(future)
+      .toUpperCase();
+
+
+    const date =
+      new Intl.DateTimeFormat(
+        "en-US",
+        {
+          month: "short",
+          day: "numeric",
+          timeZone: lunar.timezone
+        }
+      )
+      .format(future);
+
+
+    const row =
+      document.createElement("div");
+
+
+    row.className =
+      "forecast-day";
+
+
+    row.innerHTML = `
+
+      <div class="forecast-date">
+
+        <strong>
+          ${weekday}
+        </strong>
+
+        <span>
+          ${date}
+        </span>
+
+      </div>
+
+
+      <div class="forecast-moon">
+        ${moon}
+      </div>
+
+
+      <div class="forecast-phase">
+
+        <span>
+          Day ${lunar.flowDay}
+        </span>
+
+        <strong>
+          ${phase.name}
+        </strong>
+
+      </div>
+
+
+      <div class="forecast-load">
+        ${load}%
+      </div>
+
+    `;
+
+
+    container.appendChild(row);
+
+  }
+
+}
+    renderForecast();
+    
 startLunarEngine();
 
 </script>
