@@ -976,6 +976,7 @@ function startLunarEngine() {
     const lunar =
       getLunarData(new Date());
 
+    updateTodayTraining(lunar);
 
     const phase =
       getFlowPhase(lunar.flowDay);
