@@ -2361,3 +2361,119 @@ footer {
   }
 
 }
+/* =========================================
+   30-DAY DATA WAVES
+========================================= */
+
+.data-wave {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  opacity: .9;
+
+  stroke-dasharray: 18 10;
+
+  animation:
+    flowDash 10s linear infinite,
+    flowGlow 4s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+
+/* LOAD */
+
+.wave-load {
+  stroke: #42d9ff;
+  filter:
+    drop-shadow(0 0 6px rgba(66,217,255,.65));
+}
+
+
+/* ENERGY */
+
+.wave-energy {
+  stroke: #816cff;
+  opacity: .75;
+
+  animation-duration:
+    12s,
+    5s;
+
+  filter:
+    drop-shadow(0 0 6px rgba(129,108,255,.55));
+}
+
+
+/* FOCUS */
+
+.wave-focus {
+  stroke: #dd5cff;
+  opacity: .68;
+
+  animation-duration:
+    14s,
+    6s;
+
+  filter:
+    drop-shadow(0 0 6px rgba(221,92,255,.5));
+}
+
+
+/* RECOVERY */
+
+.wave-recovery {
+  stroke: #7cf6d3;
+  opacity: .65;
+
+  animation-duration:
+    16s,
+    7s;
+
+  filter:
+    drop-shadow(0 0 6px rgba(124,246,211,.45));
+}
+
+
+/* MOVEMENT */
+
+@keyframes flowDash {
+
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -280;
+  }
+
+}
+
+
+/* GLOW BREATHING */
+
+@keyframes flowGlow {
+
+  0%,
+  100% {
+    opacity: .55;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+}
+
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .data-wave {
+    animation: none;
+  }
+
+}
