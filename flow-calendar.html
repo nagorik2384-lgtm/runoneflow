@@ -1636,6 +1636,42 @@ function setupChartTabs() {
       const selected =
         button.dataset.wave;
 
+      const explanations = {
+  load: {
+    title: "Load",
+    text: "Recommended training load for the day."
+  },
+
+  energy: {
+    title: "Energy",
+    text: "Estimated capacity for physical activity within the RunOneFlow model."
+  },
+
+  focus: {
+    title: "Focus",
+    text: "Estimated readiness for concentrated and purposeful training."
+  },
+
+  recovery: {
+    title: "Recovery",
+    text: "Indicates how strongly the day favors rest, mobility and low-intensity recovery."
+  }
+};
+
+const metricTitle =
+  document.getElementById("metricTitle");
+
+const metricText =
+  document.getElementById("metricText");
+
+if (explanations[selected]) {
+  metricTitle.textContent =
+    explanations[selected].title;
+
+  metricText.textContent =
+    explanations[selected].text;
+}
+
 
       /* ACTIVE BUTTON */
 
