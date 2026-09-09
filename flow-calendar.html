@@ -1000,6 +1000,8 @@ function startLunarEngine() {
     updateTodayTraining(lunar);
     
     updateMoonPhaseVisual(lunar);
+    
+    renderFlowWaves(lunar.flowDay);
 
     const phase =
       getFlowPhase(lunar.flowDay);
@@ -1578,6 +1580,279 @@ function updateMoonPhaseVisual(lunar) {
 }
     
 startLunarEngine();
+    /* =========================================
+   FLOW WAVE ENGINE
+========================================= */
+
+function buildWavePath(values) {
+
+  const width = 1000;
+  const height = 280;
+
+  const topPadding = 25;
+  const bottomPadding = 35;
+
+  const usableHeight =
+    height - topPadding - bottomPadding;
+
+
+  const points = values.map((value, index) => {
+
+    const x =
+      (index / (values.length - 1)) * width;
+
+    const y =
+      height -
+      bottomPadding -
+      (value / 100) * usableHeight;
+
+    return { x, y };
+
+  });
+
+
+  let path =
+    `M ${points[0].x} ${points[0].y}`;
+
+
+  for (let i = 1; i < points.length; i++) {
+
+    const previous =
+      points[i - 1];
+
+    const current =
+      points[i];
+
+    const middleX =
+      (previous.x + current.x) / 2;
+
+
+    path += `
+      C ${middleX} ${previous.y},
+        ${middleX} ${current.y},
+        ${current.x} ${current.y}
+    `;
+  }
+
+
+  return path;
+}
+
+
+/* =========================================
+   CREATE 4 DATA WAVES
+========================================= */
+
+function renderFlowWaves(currentDay) {
+
+  const load = [];
+  const energy = [];
+  const focus = [];
+  const recovery = [];
+
+
+  for (let day = 1; day <= 30; day++) {
+
+    const training =
+      getTrainingData(day);
+
+    const loadValue =
+      training.load;
+
+
+    /* LOAD */
+
+    load.push(loadValue);
+
+
+    /* RECOVERY
+       inverse to training load
+    */
+
+    const recoveryValue =
+      Math.max(
+        15,
+        Math.round(
+          100 - loadValue * 0.8
+        )
+      );
+
+    recovery.push(
+      recoveryValue
+    );
+
+
+    /* ENERGY
+       smooth cycle wave
+       visual RunOneFlow model
+    */
+
+    const energyValue =
+      Math.round(
+        55 +
+        24 *
+        Math.sin(
+          ((day - 3) / 30) *
+          Math.PI * 4
+        )
+      );
+
+    energy.push(
+      Math.max(
+        15,
+        Math.min(
+          100,
+          energyValue
+        )
+      )
+    );
+
+
+    /* FOCUS
+       reacts partly to load
+       plus a smaller rhythm wave
+    */
+
+    const focusValue =
+      Math.round(
+        38 +
+        loadValue * 0.42 +
+        12 *
+        Math.sin(
+          (day / 30) *
+          Math.PI * 6
+        )
+      );
+
+    focus.push(
+      Math.max(
+        15,
+        Math.min(
+          100,
+          focusValue
+        )
+      )
+    );
+
+  }
+
+
+  /* DRAW PATHS */
+
+  const waveData = {
+
+    loadWave: load,
+
+    energyWave: energy,
+
+    focusWave: focus,
+
+    recoveryWave: recovery
+
+  };
+
+
+  Object.entries(waveData)
+    .forEach(([id, values]) => {
+
+      const element =
+        document.getElementById(id);
+
+      if (!element) return;
+
+
+      element.setAttribute(
+        "d",
+        buildWavePath(values)
+      );
+
+    });
+
+
+  /* TODAY POINT ON LOAD WAVE */
+
+  const currentLoad =
+    load[currentDay - 1];
+
+
+  const width = 1000;
+  const height = 280;
+
+  const topPadding = 25;
+  const bottomPadding = 35;
+
+  const usableHeight =
+    height - topPadding - bottomPadding;
+
+
+  const x =
+    ((currentDay - 1) / 29) *
+    width;
+
+
+  const y =
+    height -
+    bottomPadding -
+    (currentLoad / 100) *
+    usableHeight;
+
+
+  let point =
+    document.getElementById(
+      "todayWavePoint"
+    );
+
+
+  if (!point) {
+
+    const svg =
+      document.getElementById(
+        "flowChart"
+      );
+
+
+    point =
+      document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle"
+      );
+
+
+    point.setAttribute(
+      "id",
+      "todayWavePoint"
+    );
+
+
+    point.setAttribute(
+      "r",
+      "7"
+    );
+
+
+    point.setAttribute(
+      "class",
+      "today-wave-point"
+    );
+
+
+    svg.appendChild(point);
+
+  }
+
+
+  point.setAttribute(
+    "cx",
+    x
+  );
+
+
+  point.setAttribute(
+    "cy",
+    y
+  );
+
+}
 
 </script>
   
