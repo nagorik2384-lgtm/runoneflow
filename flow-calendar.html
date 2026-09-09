@@ -1601,6 +1601,74 @@ function updateMoonPhaseVisual(lunar) {
     )
   `;
 }
+    /* =========================================
+   CHART TABS
+========================================= */
+
+function setupChartTabs() {
+
+  const buttons =
+    document.querySelectorAll(".chart-tabs button");
+
+  const waves = {
+    load: document.getElementById("loadWave"),
+    energy: document.getElementById("energyWave"),
+    focus: document.getElementById("focusWave"),
+    recovery: document.getElementById("recoveryWave")
+  };
+
+
+  buttons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      const selected =
+        button.dataset.wave;
+
+
+      /* ACTIVE BUTTON */
+
+      buttons.forEach(btn =>
+        btn.classList.remove("active")
+      );
+
+      button.classList.add("active");
+
+
+      /* DIM ALL WAVES */
+
+      Object.values(waves).forEach(wave => {
+
+        if (wave) {
+          wave.style.opacity = "0.12";
+          wave.style.strokeWidth = "2";
+        }
+
+      });
+
+
+      /* HIGHLIGHT SELECTED WAVE */
+
+      const activeWave =
+        waves[selected];
+
+      if (activeWave) {
+
+        activeWave.style.opacity = "1";
+        activeWave.style.strokeWidth = "5";
+
+      }
+
+    });
+
+  });
+
+}
+
+
+/* START CHART CONTROLS */
+
+setupChartTabs();
     
 startLunarEngine();
     /* =========================================
