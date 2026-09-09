@@ -2477,3 +2477,54 @@ footer {
   }
 
 }
+/* =========================================
+   FLOW WAVE LEGEND
+========================================= */
+
+.wave-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+
+  color: rgba(255,255,255,.72);
+}
+
+.legend-line {
+  width: 34px;
+  height: 3px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.load-line {
+  background: #42d9ff;
+  box-shadow: 0 0 8px rgba(66,217,255,.7);
+}
+
+.energy-line {
+  background: #816cff;
+  box-shadow: 0 0 8px rgba(129,108,255,.6);
+}
+
+.focus-line {
+  background: #dd5cff;
+  box-shadow: 0 0 8px rgba(221,92,255,.55);
+}
+
+.recovery-line {
+  background: #7cf6d3;
+  box-shadow: 0 0 8px rgba(124,246,211,.5);
+}
