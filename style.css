@@ -2528,3 +2528,39 @@ footer {
   background: #7cf6d3;
   box-shadow: 0 0 8px rgba(124,246,211,.5);
 }
+/* FLOW DAY — CENTER */
+
+.lunar-day-display {
+  width: 100%;
+  text-align: center;
+}
+
+.lunar-day-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  margin: 8px auto 10px;
+}
+
+.lunar-day-number strong {
+  display: block;
+
+  margin: 0 auto;
+
+  text-align: center;
+
+  font-size: clamp(64px, 10vw, 96px);
+  line-height: 1;
+
+  transition:
+    color .6s ease,
+    text-shadow .6s ease;
+}
+
+.flow-day-label,
+.lunar-progress-label {
+  text-align: center;
+}
