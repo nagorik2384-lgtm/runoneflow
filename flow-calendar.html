@@ -1058,7 +1058,15 @@ function startLunarEngine() {
       phase.name
     );
 
+/* Update Lunar Cycle Progress */
 
+const lunarProgress =
+  document.getElementById("lunarProgress");
+
+if (lunarProgress) {
+  lunarProgress.textContent =
+    Math.round(lunar.progress * 100) + "%";
+}
     /* Update Lunar Day */
 
     const lunarDay =
